@@ -27,7 +27,13 @@ Use the `ignore` directive in `go.mod` to exclude specific directories from pack
 ignore "assets/large_data"
 ```
 
-## 4. JSON Output for CI/CD
+## 4. Static Assets with `embed`
+Store assets to be embedded in a `static/` or `assets/` directory and use the `embed` package.
+
+## 5. Test Data
+Use a `testdata/` directory for files used only in tests. Go tools ignore this directory during normal builds.
+
+## 6. JSON Output for CI/CD
 Use `-json` flags for tools in CI/CD pipelines for better integration.
 - `go build -json`
 - `go test -json` (includes build output in JSON)
