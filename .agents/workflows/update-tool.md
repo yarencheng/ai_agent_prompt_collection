@@ -14,7 +14,7 @@ description: Update the workflow files for a specific tool version
 * Set the content of `[NAME]/[VERSION]/antigravity/workflow-update.md` to the following steps:
   * **Requirement**: Use the `@[/google-antigravity]` skill to manage all agent components.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
-  * (B) Scan `../references/**` to find all versioned documentation (e.g., release notes) for each version up to `[VERSION]`.
+  * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and versioned release notes for each version up to `[VERSION]`.
   * (C) For each version identified in (B), extract and summarize the core features, idiomatic patterns, and established best practices.
   * (D) Process these findings in **chronological order** (oldest to newest):
     * Update `rules/**`, `skills/**`, and `workflows/**` to incorporate the identified best practices.
@@ -26,7 +26,7 @@ description: Update the workflow files for a specific tool version
 * Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following steps:
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
-  * (B) Identify all versioned references in `../references/**` up to `[VERSION]`.
+  * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", versioned references) up to `[VERSION]`.
   * (C) For each version, extract the core features and recommended best practices.
   * **Cumulative Gap Analysis**:
     * Compare the features and best practices identified in (C) against the implementation in (A).
