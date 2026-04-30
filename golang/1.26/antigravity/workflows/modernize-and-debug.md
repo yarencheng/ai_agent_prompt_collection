@@ -1,23 +1,40 @@
 ---
-description: Workflow for modernizing Go codebases and debugging goroutine leaks using Go 1.26 features.
+description: Comprehensive workflow for upgrading, modernizing, and debugging Go 1.26 applications.
 ---
 
-# Modernize and Debug Workflow
+# Go 1.26 Upgrade and Debug Workflow
 
-## Step 1: Modernize Codebase
-1. Run `go fix` to apply standard modernizers.
-2. Use `//go:fix inline` to migrate deprecated internal APIs to new counterparts.
-3. Verify changes using `go vet`.
-
-## Step 2: Analyze Goroutine Leaks
-1. Build the application with `GOEXPERIMENT=goroutineleakprofile`.
-2. Enable the leak profile in code:
-   ```go
-   import _ "net/http/pprof"
+## Phase 1: Upgrade and Modernize
+1. **Update Toolchain**: Update `go.mod` to `go 1.26`.
+   ```bash
+   go get go@1.26
+   go mod tidy
    ```
-3. Access the leak profile at `/debug/pprof/goroutineleak`.
-4. Identify goroutines blocked on unreachable concurrency primitives.
-## Step 3: Manage Test Artifacts
-1. Identify tests that generate side-effect files (logs, dumps).
-2. Refactor to use `t.ArtifactDir()` for consistent storage.
-3. Run tests with `go test -artifacts -outputdir=./out` to collect results.
+2. **Run Modernizers**: Use the revamped `go fix` to apply standard Go 1.26 idioms.
+   ```bash
+   go fix ./...
+   ```
+3. **Manual Refactoring**:
+   - Replace `errors.As` with `errors.AsType`.
+   - Update `sync.WaitGroup` patterns to use `wg.Go()`.
+   - Update JSON tags to use `omitzero` where appropriate.
+   - Migrate `runtime.SetFinalizer` to `runtime.AddCleanup`.
+
+## Phase 2: Debugging and Profiling
+1. **Goroutine Leak Analysis**:
+   - Build with `GOEXPERIMENT=goroutineleakprofile`.
+   - Use `/debug/pprof/goroutineleak` to find permanently blocked goroutines.
+2. **Execution Tracing**:
+   - Use `runtime/trace.FlightRecorder` for lightweight continuous tracing.
+   - Snapshot traces on errors or performance dips using `FlightRecorder.WriteTo`.
+3. **Garbage Collection**:
+   - Verify performance with the new **Green Tea GC**.
+   - If issues arise, test with `GOEXPERIMENT=nogreenteagc`.
+
+## Phase 3: Testing Infrastructure
+1. **Concurrency Testing**: Refactor flaky concurrent tests to use `testing/synctest` bubbles and virtual time.
+2. **Artifact Management**: Ensure all test-generated files (logs, traces) are written to `t.ArtifactDir()`.
+3. **Benchmark Modernization**: Migrate `b.N` loops to `b.Loop()` to improve accuracy and inlining.
+   ```bash
+   go test -bench . -artifacts -outputdir=./test-results
+   ```
