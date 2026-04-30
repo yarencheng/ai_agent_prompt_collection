@@ -6,7 +6,7 @@
 Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
 
 ## (B) Identify references
-Identify all versioned references in `../references/**` up to `1.26`.
+Identify all versioned references in `../references/**` from **1.1** up to **1.26**.
 
 ## (C) Cumulative Gap Analysis
 Perform a Cumulative Gap Analysis:
