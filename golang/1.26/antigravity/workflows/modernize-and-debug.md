@@ -15,10 +15,13 @@ description: Comprehensive workflow for upgrading, modernizing, and debugging Go
    go fix ./...
    ```
 3. **Manual Refactoring**:
-   - Replace `errors.As` with `errors.AsType`.
-   - Update `sync.WaitGroup` patterns to use `wg.Go()`.
-   - Update JSON tags to use `omitzero` where appropriate.
-   - Migrate `runtime.SetFinalizer` to `runtime.AddCleanup`.
+   - **Adopt Iterators**: Convert custom collection traversal to use `iter.Seq` or `iter.Seq2`.
+   - **Adopt Generics**: Replace manual `for` loops with `slices.Contains`, `slices.Sort`, or `maps.Keys`.
+   - **Error Handling**: Replace `errors.As` with `errors.AsType`.
+   - **Concurrency**: Update `sync.WaitGroup` patterns to use `wg.Go()`.
+   - **JSON**: Update JSON tags to use `omitzero` for zero-value omission.
+   - **Cleanups**: Migrate `runtime.SetFinalizer` to `runtime.AddCleanup`.
+
 
 ## Phase 2: Debugging and Profiling
 1. **Goroutine Leak Analysis**:
