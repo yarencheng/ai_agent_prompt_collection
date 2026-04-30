@@ -1,0 +1,24 @@
+---
+trigger: always_on
+---
+
+# Always Use Descriptive Commit Messages
+
+All commit messages must follow the Conventional Commits specification to ensure a clear and structured project history.
+
+## Rule
+Each commit message must consist of a **type**, an optional **scope**, and a **subject**:
+`<type>(<scope>): <subject>`
+
+### Allowed Types
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools
+
+### Examples
+- **Correct**: `feat(auth): add login functionality`
+- **Incorrect**: `fixed bug`
