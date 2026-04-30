@@ -16,7 +16,7 @@ description: Update the workflow files for a specific tool version
   * Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
   * Merge files if they have duplicated content.
   * Refactor files if they have overlapping content to improve clarity and reduce token usage.
-  * Read all reference files in `references/**`.
+  * Read all reference files in `../references/**`.
   * Extract any rules for using [NAME]/[VERSION] and update `rules/**`.
   * Extract any skills for using [NAME]/[VERSION] and update `skills/**`.
   * Extract any workflows for using [NAME]/[VERSION] and update `workflows/**`.
@@ -26,7 +26,7 @@ description: Update the workflow files for a specific tool version
 * Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following steps:
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
-  * (B) Read all reference files in `references/**`.
+  * (B) Read all reference files in `../references/**`.
   * Perform a Gap Analysis:
     * Compare the features/rules mentioned in (B) against what is implemented in (A).
     * List specific missing items or areas for improvement.
