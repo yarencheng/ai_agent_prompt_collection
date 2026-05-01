@@ -10,16 +10,18 @@ description: Standard workflow for fixing a bug and preparing a pull request in 
    - If browser tests fail, ensure Playwright is installed: `pnpm playwright install chromium`.
 
 2. **Implementation**:
-   - Run `pnpm -F @sveltejs/kit sync` to ensure routing info and types are up to date.
+   - Run `pnpm -F @sveltejs/kit sync` (or `pnpm sync-all`) to ensure routing info and types are up to date.
    - Apply the fix following the `rules/general.md` conventions (Tabs, Single Quotes, No Trailing Commas).
    - Use JSDoc for any new functions or parameters.
 
 3. **Validation**:
    - Run `pnpm build` to ensure all packages are up to date.
    - Run the specific test that was failing to confirm the fix.
+   - If output changes are expected, run snapshot update commands: `UPDATE_SNAPSHOTS=true pnpm test`.
    - Run all unit tests: `pnpm -F @sveltejs/kit test:unit`.
 
 4. **Pre-submission**:
+   - Run `pnpm sync-all` to ensure documentation and packages are synchronized.
    - Run `pnpm run format` to ensure correct indentation (Tabs) and style.
    - Run `pnpm run lint` and `pnpm run check` to verify types and style.
    - For Kit changes, run `pnpm -F @sveltejs/kit prepublishOnly` to regenerate types.

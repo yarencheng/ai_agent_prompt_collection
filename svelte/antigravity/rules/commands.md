@@ -23,11 +23,13 @@ Standard commands for development, validation, and testing in the Svelte and Sve
 - **Other Package Tests**: `pnpm test:others`
 - **Core Svelte Tests**: `pnpm test`
 - **Filter Tests**: `pnpm test <suite-name> -t <test-name>`
+- **Update Snapshots**: `UPDATE_SNAPSHOTS=true pnpm test` or `npx vitest -u`
 
 ## Contribution Commands
 - **Changesets**: `pnpm changeset` (prefix with `fix`, `feat`, `breaking`, or `chore`)
 - **Generate Types (Kit)**: `pnpm -F @sveltejs/kit prepublishOnly`
 - **Generate Types (Core)**: `pnpm generate:types`
+- **Sync All**: `pnpm sync-all` (Synchronizes all packages and documentation across the monorepo)
 
 ## Troubleshooting & Setup
 - **Install Playwright**: `pnpm playwright install chromium`

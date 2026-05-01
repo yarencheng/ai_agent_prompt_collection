@@ -38,3 +38,22 @@ Follow these rules strictly when working in the Svelte or SvelteKit repositories
 ## Error Handling
 - Use `instanceof` to check for known error types (e.g., `HttpError`, `SvelteKitError`).
 - Use optional chaining (`?.`) and nullish coalescing (`??`) for safety.
+
+## Breaking Changes
+When proposing a breaking change, include the following checklist in the PR description:
+- **Who does this affect**:
+- **How to migrate**:
+- **Why make this breaking change**:
+- **Severity**: (number of people affected x effort)
+
+## RFC Process
+Proposals for large new features or major changes must go through the RFC process.
+1. Discuss the idea in the community/Discord.
+2. Create an RFC in the `sveltejs/rfcs` repository.
+3. Wait for feedback and approval from maintainers before implementing.
+
+## Documentation Synchronization
+When changing APIs or features:
+1. Update the relevant `.md` files in the `documentation/` directory.
+2. Use `pnpm sync-all` to ensure documentation and packages remain in sync.
+3. Review generated types and documentation previews before submission.
