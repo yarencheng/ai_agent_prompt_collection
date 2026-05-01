@@ -31,9 +31,15 @@ disable = false
 [params]
 copyright = "AI Prompt Collection Authors"
 github_repo = "https://github.com/yarencheng/ai_agent_prompt_collection"
+offlineSearch = true
 
 [params.ui]
 #  Set to false if you don't want any menus in the footer
 footer_menu_title = "AI Prompt Collection"
 # Enable dark mode toggle
 color_palette_toggle = true
+
+[[menu.main]]
+  name = "Documentation"
+  url = "/docs/"
+  weight = 10
