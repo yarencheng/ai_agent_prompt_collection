@@ -18,12 +18,14 @@ trigger: always_on
 
 # Advanced Testing
 * **Benchmarks (1.26)**: Use `B.Loop` (e.g., `for b.Loop() { ... }`) for benchmarks. It prevents inlining issues while keeping variables alive.
+* **Deterministic Crypto (1.26)**: Use `testing/cryptotest.SetGlobalRandom` to fix the random source for `crypto/rand` and other packages during tests.
 * **Fuzzing**: Use `f.Fuzz` for randomized edge-case detection.
 * **Filesystem**: Use `fstest.MapFS` and `testing/fstest.TestFS` (1.23) for FS-related tests.
 * **Crypto (1.26)**: Use `testing/cryptotest` to verify cryptographic implementations.
 
 # Best Practices
 * **Avoid Mocks**: Use real implementations or high-fidelity fakes (e.g., `httptest`).
+* **WaitGroup Orchestration (1.25)**: Use `sync.WaitGroup.Go` to launch goroutines and automatically track them in the WaitGroup.
 * **External Tests**: Use `package name_test` to test the public API.
 * **Race Detector**: Always run with `-race`.
 * **Standard Versioning**: Ensure `go test` passes the `stdversion` check.

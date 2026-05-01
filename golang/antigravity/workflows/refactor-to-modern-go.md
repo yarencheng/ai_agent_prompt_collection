@@ -17,7 +17,8 @@ description: Modernize a Go codebase to Go 1.27+ features and best practices.
    * Run `go fix` with modernizers to automate common idiom updates (e.g., `errors.AsType`, `slog`, `new(expr)`).
 
 3. **Standard Library Migration (1.27)**:
-   * Replace 3-party UUID libraries with the built-in `uuid` package.
+   * Replace 3rd-party UUID libraries with the built-in `uuid` package.
+   * Replace `x/crypto/hkdf`, `pbkdf2`, `sha3` with built-in `crypto` packages (1.24).
    * Simplify string/slice logic using `CutLast`.
    * Sandbox sensitive filesystem logic using `os.Root` (1.24).
 
@@ -33,6 +34,7 @@ description: Modernize a Go codebase to Go 1.27+ features and best practices.
 6. **Iterators & Collections (1.23+)**:
    * Replace complex loops with `for-range` over functions.
    * Use `slices.All`, `maps.Keys` for idiomatic traversal.
+   * Use `sync.WaitGroup.Go(f)` (1.25) for cleaner concurrency.
 
 7. **Logging & Observability**:
    * Migrate legacy logs to `log/slog`. Use `NewMultiHandler` (1.26) for broadcasting.
@@ -40,7 +42,7 @@ description: Modernize a Go codebase to Go 1.27+ features and best practices.
 
 8. **Verification & Testing (1.27)**:
    * Run `go test -race ./...`.
-   * Leverage `testing/synctest` for deterministic concurrency checks.
+   * Leverage `testing/synctest` for deterministic concurrency checks (package graduated from experimental in 1.27).
    * Ensure `stdversion` vet check passes (enforced by `go test` in 1.27).
 
 9. **Standardization**:

@@ -8,11 +8,13 @@ trigger: always_on
 * **Pragmatic Simplicity**: Favor readable, maintainable code. Avoid "clever" solutions.
 * **Gofmt**: Standard formatting is non-negotiable. Let the tool decide.
 * **Standard Library First**: Prefer the stdlib (e.g., `uuid`, `crypto/hpke`) over external dependencies.
+* **Executable Dependencies (1.24)**: Use the `tool` directive in `go.mod` to track build tools. Run them with `go tool <tool>`.
 
 # Correctness & Safety
 * **Modernizers (1.26)**: Use `go fix` with modernizers to automate idiom updates. Treat `go vet` and lint warnings as errors.
 * **Version Safety (1.27)**: `go test` enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
 * **Strong Typing**: Minimize `any`. Use generics for type-safe containers and utilities.
+* **UUID (1.27)**: Use the built-in `uuid` package for generating and parsing UUIDs. Avoid external dependencies like `google/uuid`.
 
 # Ergonomics
 * **Pointer Initialization (1.26)**: Use `new(expression)` (e.g., `new(42)`) to initialize pointers to optional fields or literals in a single step.

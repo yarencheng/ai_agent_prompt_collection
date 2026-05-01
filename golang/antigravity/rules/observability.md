@@ -17,8 +17,10 @@ trigger: always_on
 
 # Metrics & Monitoring
 * **Runtime Metrics**: Use `runtime/metrics` instead of `ReadMemStats`. Monitor `/sched/goroutines` and `/sched/threads`.
+* **GOMAXPROCS (1.25)**: Monitor `/sched/gomaxprocs` to see how the runtime adapts to container CPU limits automatically.
 * **GC Monitoring**: Monitor `/sched/pauses/total/gc:seconds`. Leverage Green Tea GC (1.26) for reduced overhead.
 * **Resource Cleanup (1.24)**: Monitor `AddCleanup` execution to ensure timely resource reclamation.
 
 # Security
-* **Secret Erasure (1.26)**: Use `runtime/secret` (experimental) to securely erase cryptographic temporaries from registers and stack.
+* **Secret Erasure (1.26)**: Use `runtime/secret` to securely erase cryptographic temporaries (keys, nonces) from registers and stack.
+* **FS Sandboxing (1.24)**: Use `os.Root` for all high-risk filesystem operations.
