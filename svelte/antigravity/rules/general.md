@@ -22,6 +22,13 @@ Follow these rules strictly when working in the Svelte or SvelteKit repositories
 - **Functions**: Use named function declarations (`export function ...`) for exported functions. Use arrow functions for internal callbacks.
 - **JSDoc Imports**: Use JSDoc type imports: `/** @import { Type } from 'module' */`.
 
+## API Design
+- **Public APIs**: Provide a single object as the argument to public APIs. This object can have multiple properties.
+
+## Monorepo Management
+- **Overrides**: Use `pnpm.overrides` in the root `package.json` to test against local changes in dependencies (e.g., Vite).
+- **Playground**: Use `playgrounds/basic` for local experimentation.
+
 ## Typing (JSDoc)
 - Use JSDoc annotations for all function parameters and return types.
 - Complex types: `/** @type {Array<{ type: string }>} */`.

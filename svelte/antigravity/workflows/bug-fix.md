@@ -7,8 +7,10 @@ description: Standard workflow for fixing a bug and preparing a pull request in 
 1. **Reproduction**:
    - Create a minimal reproduction case in `packages/kit/test/apps/` (for Kit) or `tests/` (for Svelte).
    - Verify the failure using `pnpm test <suite> -t <test-name>`.
+   - If browser tests fail, ensure Playwright is installed: `pnpm playwright install chromium`.
 
 2. **Implementation**:
+   - Run `pnpm -F @sveltejs/kit sync` to ensure routing info and types are up to date.
    - Apply the fix following the `rules/general.md` conventions (Tabs, Single Quotes, No Trailing Commas).
    - Use JSDoc for any new functions or parameters.
 
