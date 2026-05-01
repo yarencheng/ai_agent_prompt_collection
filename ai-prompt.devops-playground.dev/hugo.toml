@@ -2,9 +2,16 @@ baseURL = "https://ai-prompt.devops-playground.dev/"
 title = "AI Prompt Collection"
 
 # Language settings
-contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    title = "AI Prompt Collection"
+    description = "A curated collection of AI agent prompts and configurations."
+    languageName = "English"
+    contentDir = "content/en"
+    weight = 1
 
 # Highlighting config
 pygmentsCodeFences = true

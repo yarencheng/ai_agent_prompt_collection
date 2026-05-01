@@ -1,6 +1,7 @@
 ---
 title: Welcome to AI Prompt Collection
 description: A curated collection of AI agent prompts and configurations.
+type: docs
 ---
 
 # Welcome
