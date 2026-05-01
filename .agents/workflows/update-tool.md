@@ -14,11 +14,11 @@ description: Update the workflow files for a specific tool version
 * Set the content of `[NAME]/[VERSION]/antigravity/workflow-update.md` to the following steps:
   * **Requirement**: Use the `@[/google-antigravity]` skill to manage all agent components.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
-  * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and versioned release notes for each version up to `[VERSION]`.
-  * (C) For each version identified in (B), extract and summarize the core features, idiomatic patterns, and established best practices.
-  * (D) Process these findings in **chronological order** (oldest to newest):
+  * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and all versioned release notes.
+  * (C) Extract and summarize the core features, idiomatic patterns, and established best practices from the identified documentation.
+  * (D) Process these findings systematically (chronologically if versioned):
     * Update `rules/**`, `skills/**`, and `workflows/**` to incorporate the identified best practices.
-    * **Priority**: Newer version best practices and features MUST take precedence if they contradict older ones.
+    * **Priority**: Modern best practices and features MUST take precedence over legacy ones.
   * (E) Merge and refactor all components to remove duplication, improve clarity, and reduce token usage.
   * **Standardization**: Ensure all created/modified components follow the structures (YAML frontmatter, directory layout) defined in `@[/google-antigravity]`.
 
@@ -26,8 +26,8 @@ description: Update the workflow files for a specific tool version
 * Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following steps:
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
-  * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", versioned references) up to `[VERSION]`.
-  * (C) For each version, extract the core features and recommended best practices.
+  * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", versioned references).
+  * (C) Extract the core features and recommended best practices for the tool from the identified documentation.
   * **Cumulative Gap Analysis**:
     * Compare the features and best practices identified in (C) against the implementation in (A).
     * List specific missing items or areas for improvement.
