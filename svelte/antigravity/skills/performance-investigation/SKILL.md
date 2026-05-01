@@ -1,3 +1,8 @@
+---
+name: performance-investigation
+description: Specialized capability for investigating and optimizing performance in Svelte and SvelteKit.
+---
+
 # Svelte Performance Investigation
 
 Specialized capability for investigating and optimizing performance in Svelte and SvelteKit, using modern profiling and benchmarking standards.

@@ -1,3 +1,8 @@
+---
+name: svelte-general
+description: Specialized capability for contributing to the Svelte and SvelteKit monorepos, focused on modern Svelte 5 conventions.
+---
+
 # Svelte & SvelteKit Development
 
 Specialized capability for contributing to the Svelte and SvelteKit monorepos, focused on modern Svelte 5 conventions and robust web standards.
