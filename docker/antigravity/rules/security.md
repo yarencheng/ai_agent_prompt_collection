@@ -1,51 +1,47 @@
 ---
-description: Security guidelines for building and running Docker containers.
+name: security
+description: Security guidelines for Docker images and containers.
 ---
 
-# Docker Security
+# Docker Security Rules
 
-Implement a "defense in depth" strategy for your containerized applications.
+Prioritize security throughout the container lifecycle.
 
-## Build Security
-
-### 1. Run as Non-Root User
-Never run your application as `root` unless absolutely necessary.
-- Create a specific user in the Dockerfile.
-- Use the `USER` instruction to switch before the final `ENTRYPOINT`.
-
-```dockerfile
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
-```
-
-### 2. Secure Base Images
-- Use verified and official images.
-- Prefer minimal images (Alpine, Distroless) to reduce the attack surface.
-- Scan images for vulnerabilities using `docker scout` or `trivy`.
-
-### 3. Handle Secrets Securely
-- Never bake secrets (API keys, passwords) into the image layers via `ENV` or `RUN`.
-- Use BuildKit build secrets (`--secret`) or runtime secrets (Docker Secrets, HashiCorp Vault).
-
-### 4. Supply Chain Integrity
-- Use fixed versions or digests for base images: `FROM alpine:3.21@sha256:...`
-- Sign your images with Docker Content Trust (DCT).
+## Image Security
+- **Base Images**: Use minimal base images (e.g., `alpine`, `distroless`) to reduce the attack surface.
+- **Scanning**: Regularly scan images for vulnerabilities using tools like `docker scout` or `trivy`.
+- **Rootless**: Never run applications as `root`. Use a dedicated user:
+  ```dockerfile
+  RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+  USER appuser
+  ```
 
 ## Runtime Security
+- **Privileged Mode**: Never use `--privileged` unless absolutely necessary.
+- **Capabilities**: Drop all capabilities and add only what is needed:
+  ```yaml
+  cap_drop:
+    - ALL
+  cap_add:
+    - NET_BIND_SERVICE
+  ```
+- **Read-Only Filesystem**: Run containers with a read-only root filesystem when possible:
+  ```yaml
+  read_only: true
+  tmpfs:
+    - /tmp
+    - /run
+  ```
+- **Resource Constraints**: Always set memory and CPU limits to prevent DoS attacks:
+  ```yaml
+  deploy:
+    resources:
+      limits:
+        cpus: '0.50'
+        memory: 512M
+  ```
 
-### 1. Minimal Privileges
-- Use `--read-only` root filesystem whenever possible.
-- Drop unnecessary capabilities: `--cap-drop=ALL`.
-- Avoid `--privileged` mode.
-
-### 2. Resource Constraints
-- Limit CPU and Memory usage to prevent DoS attacks from compromised containers.
-- Limit PID usage to prevent fork bombs.
-
-### 3. Network Isolation
-- Isolate containers in private networks.
-- Use firewall rules or Network Policies (in K8s) to restrict traffic.
-
-### 4. Logging and Auditing
-- Ensure logs are centralized and monitored.
-- Audit container events and system calls.
+## Secret Management
+- **Avoid ENV for Secrets**: Do not pass sensitive information via environment variables as they can be seen in `docker inspect`.
+- **BuildKit Secrets**: Use `--mount=type=secret` for secrets needed during build.
+- **Compose Secrets**: Use the `secrets` top-level element in Compose.

@@ -1,36 +1,45 @@
 ---
-description: Standard workflow for containerizing a new or existing application following best practices.
+name: containerize
+description: Standardized workflow for containerizing a new or existing application.
 ---
 
 # Containerization Workflow
 
-Follow these steps to create a production-ready Docker environment for an application.
+Follow these steps to containerize an application from scratch.
 
-## 1. Initial Assessment
-- Identify the application stack (language, framework, runtime).
-- List all external dependencies (databases, caches, APIs).
-- Determine persistent data requirements.
+## Prerequisites
+- Working application code.
+- Knowledge of the application's runtime dependencies and entry point.
 
-## 2. Dockerfile Design
-- Use `rules/idiomatic-dockerfile.md` to draft the Dockerfile.
-- **Base Image**: Select the smallest official image (e.g., `alpine`, `node:slim`).
-- **Build Stages**: Implement a multi-stage build to keep the final image small.
-- **Permissions**: Add a non-root user and switch to it using `USER`.
-- **Caching**: Order instructions to optimize build cache hits.
+## Workflow Steps
 
-## 3. Local Orchestration (Compose)
-- Use `rules/compose-best-practices.md` to draft the `compose.yaml`.
-- **Services**: Define the app service and its dependencies.
-- **Reliability**: Add `healthcheck` and `depends_on`.
-- **Networking**: Create a dedicated network for service isolation.
-- **Volumes**: Configure named volumes for persistent data.
+### 1. Initialize
+- Run `docker init` if available to generate a baseline.
+- If not, create `Dockerfile`, `compose.yaml`, and `.dockerignore`.
 
-## 4. Security Audit
-- Use `rules/security.md` to audit the configuration.
-- **Secrets**: Move sensitive data from environment variables to `secrets`.
-- **Minimalism**: Ensure no unnecessary tools or packages are in the final image.
+### 2. Configure Dockerfile
+- Apply `@[/optimize-dockerfile]` to create an efficient multi-stage build.
+- Ensure `# syntax=docker/dockerfile:1` is present.
+- Define build and runtime stages.
+- Switch to a non-root `USER`.
 
-## 5. Verification and CI
-- Validate the Dockerfile with `docker build --check .`.
-- Test the full stack locally with `docker compose up`.
-- Prepare the configuration for CI/CD using `rules/modern-docker.md`.
+### 3. Configure Compose
+- Apply `@[/configure-compose]` to define the service architecture.
+- Add dependent services (databases, caches) with Official images.
+- Set up networks and volumes.
+- Add healthchecks for dependency orchestration.
+
+### 4. Security Pass
+- Review rules in `@[/security]`.
+- Check base image vulnerabilities.
+- Ensure no secrets are hardcoded.
+
+### 5. Validate
+- Build the project: `docker compose build`.
+- Start the services: `docker compose up -d`.
+- Verify the application is reachable and functioning.
+
+## Deliverables
+- A production-ready `Dockerfile`.
+- A robust `compose.yaml`.
+- A comprehensive `.dockerignore`.

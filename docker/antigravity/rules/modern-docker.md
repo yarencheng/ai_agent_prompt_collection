@@ -1,54 +1,25 @@
 ---
-description: Leverage modern Docker features (BuildKit, Buildx, Bake, Build Checks) for advanced workflows.
+name: modern-docker
+description: Leveraging modern Docker features and ecosystem tools.
 ---
 
-# Modern Docker
+# Modern Docker Features
 
-Incorporate modern Docker capabilities to improve build performance, validation, and automation.
+Stay ahead by utilizing the latest advancements in the Docker ecosystem.
 
-## BuildKit & Buildx
+## Buildx and Multi-Platform
+- **Multi-Platform Builds**: Use `docker buildx build --platform linux/amd64,linux/arm64` to create images for different architectures.
+- **Remote Builders**: Utilize remote BuildKit instances for faster, distributed builds.
 
-BuildKit is the modern build engine. Ensure it is enabled (default in Docker Desktop and recent Engine versions).
+## Development Experience
+- **Docker Init**: Use `docker init` to automatically generate `Dockerfile`, `compose.yaml`, and `.dockerignore` for new projects.
+- **Dev Containers**: Use the Dev Containers standard ( `.devcontainer/devcontainer.json`) to provide a consistent development environment within Docker.
+- **Compose Watch**: Use `docker compose watch` for automatic synchronization of local changes into running containers.
 
-### 1. Build Checks (Dockerfile 1.8+)
-Use build checks to validate your Dockerfile against best practices during the build process.
-- Use `# check=error=true` to fail the build on lint violations.
-- Use `docker build --check .` for a dry-run linting.
+## Image Management
+- **Docker Scout**: Use `docker scout` for deep image analysis, including vulnerability scanning and software supply chain insights.
+- **Attestations**: Generate and attach build attestations (SBOM, SLSA) to your images for enhanced provenance and security.
 
-### 2. Multi-Platform Builds
-Use `docker buildx build --platform linux/amd64,linux/arm64 ...` to create images for multiple architectures.
-
-### 3. Build Secrets
-Use `--secret` to securely pass sensitive information during build without leaking it in layers.
-```dockerfile
-RUN --mount=type=secret,id=my_secret \
-    cat /run/secrets/my_secret
-```
-
-## Docker Bake
-Use `docker buildx bake` for complex, multi-service build configurations.
-- Define build targets in a `docker-bake.hcl` file.
-- Support inheritance, variables, and parallel builds.
-
-```hcl
-target "default" {
-  dockerfile = "Dockerfile"
-  platforms = ["linux/amd64", "linux/arm64"]
-}
-
-target "app" {
-  inherits = ["default"]
-  context = "./app"
-  tags = ["myapp:latest"]
-}
-```
-
-## Docker Scout
-Use Docker Scout for real-time security analysis and supply chain management.
-- Enable Scout in your CI/CD pipeline.
-- Use Scout to identify base image updates and vulnerabilities.
-
-## CI/CD Integration
-- Use official GitHub Actions: `docker/setup-buildx-action`, `docker/login-action`, `docker/build-push-action`.
-- Leverage cache backends (e.g., `type=gha`, `type=registry`) for faster builds in CI.
-- Enable Build Checks in CI to catch anti-patterns early.
+## Best Practices
+- **Standardized Naming**: Follow a consistent tagging strategy (e.g., semantic versioning + commit SHA).
+- **Ephemeral Infrastructure**: Treat containers as disposable; never store state inside a container.

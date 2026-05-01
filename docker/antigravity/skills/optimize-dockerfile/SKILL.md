@@ -1,34 +1,32 @@
-# Optimize Dockerfile
+---
+name: optimize-dockerfile
+description: Skill for analyzing and refactoring Dockerfiles for performance, size, and security.
+---
 
-Analyze and refactor existing Dockerfiles to align with modern best practices and security standards.
+# Dockerfile Optimizer
+
+Expert at refactoring Dockerfiles to follow modern best practices and efficiency standards.
 
 ## Capabilities
+- **Size Reduction**: Implementing multi-stage builds and minimal base images.
+- **Build Speed**: Optimizing layer caching and using BuildKit cache mounts.
+- **Security Audit**: Identifying root usage, exposed secrets, and vulnerable base images.
 
-### 1. Structure Optimization
-- Convert single-stage Dockerfiles to **multi-stage builds**.
-- Optimize instruction ordering to maximize **build cache efficiency**.
-- Consolidate `RUN` instructions to reduce image layers.
+## Refactoring Workflow
+1. **Analyze Current State**: Read the existing `Dockerfile` and identify anti-patterns (e.g., missing multi-stage, large base images, poor layer order).
+2. **Apply Multi-Stage**:
+   - Create a `build` stage for compiling/installing dependencies.
+   - Create a `final` stage using a minimal runtime image (e.g., `alpine`, `distroless`).
+   - Copy only the necessary artifacts from `build` to `final`.
+3. **Optimize Layers**:
+   - Group `RUN` instructions.
+   - Use `# syntax=docker/dockerfile:1`.
+   - Add cache mounts for package managers.
+4. **Hardening**:
+   - Add `USER` to run as non-root.
+   - Verify absolute paths for `WORKDIR`.
+5. **Context Check**: Verify `.dockerignore` exists and is comprehensive.
 
-### 2. Modern Feature Adoption
-- Integrate **BuildKit** features like bind mounts (`--mount=type=bind`) and cache mounts (`--mount=type=cache`).
-- Add **Build Checks** directives (`# check=error=true`).
-- Implement **Build Secrets** for sensitive data.
-
-### 3. Security Hardening
-- Implement **non-root users** (`USER` instruction).
-- Switch to minimal, secure **base images** (Alpine, Distroless).
-- Remove `sudo` and other unnecessary packages.
-- Ensure secrets are not leaked in layers.
-
-### 4. Cleanup and Maintenance
-- Add `.dockerignore` files to exclude irrelevant content.
-- Standardize metadata using `LABEL`.
-- Use absolute paths for `WORKDIR`.
-
-## Interaction Logic
-
-When tasked with optimizing a Dockerfile:
-1.  **Analyze**: Read the existing Dockerfile and identify anti-patterns (e.g., large base images, root user, poor caching).
-2.  **Propose**: Detail the specific improvements (e.g., "Switching to Alpine", "Implementing multi-stage build").
-3.  **Execute**: Apply the changes using rules from `idiomatic-dockerfile.md` and `security.md`.
-4.  **Verify**: If possible, suggest running `docker build --check .` to validate the new configuration.
+## Verification
+- Run `docker build --no-cache` to ensure the new Dockerfile is valid.
+- Compare image sizes before and after optimization.
