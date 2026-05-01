@@ -10,6 +10,8 @@ trigger: always_on
 
 # Test Structure & Lifecycle
 * **Subtests**: Use `t.Run` for table-driven tests.
+* **Test Context (1.24)**: Use `t.Context()` and `b.Context()` for a context that is automatically canceled after the test and before cleanups.
+* **Working Directory (1.24)**: Use `t.Chdir()` to change the working directory for the duration of the test.
 * **Cleanup**: Prefer `t.Cleanup()` over `defer` for resource management.
 * **Artifacts (1.26)**: Use `t.ArtifactDir()` to store test logs, dumps, or screenshots.
 * **Helpers**: Use `t.Helper()` to maintain relevant stack traces.

@@ -7,21 +7,23 @@ trigger: always_on
 # Core Principles
 * **Pragmatic Simplicity**: Favor readable, maintainable code. Avoid "clever" solutions.
 * **Gofmt**: Standard formatting is non-negotiable. Let the tool decide.
-* **Standard Library First**: Prefer the stdlib (especially new additions like `uuid`) over external dependencies.
+* **Standard Library First**: Prefer the stdlib (e.g., `uuid`, `crypto/hpke`) over external dependencies.
 
 # Correctness & Safety
-* **Static Analysis**: Treat `go vet` and lint warnings as errors. Use `go fix` modernizers (1.26+) to automate idiom updates.
-* **Version Safety (1.27)**: `go test` now enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
+* **Modernizers (1.26)**: Use `go fix` with modernizers to automate idiom updates. Treat `go vet` and lint warnings as errors.
+* **Version Safety (1.27)**: `go test` enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
 * **Strong Typing**: Minimize `any`. Use generics for type-safe containers and utilities.
 
 # Ergonomics
 * **Pointer Initialization (1.26)**: Use `new(expression)` (e.g., `new(42)`) to initialize pointers to optional fields or literals in a single step.
+* **JSON (1.24)**: Use `omitzero` struct tags to omit zero-valued fields (including `time.Time`) cleanly.
 * **Guard Clauses**: Return early to minimize nesting.
 * **Wrapping**: Use `%w` with `fmt.Errorf` for context. Prefer `errors.AsType[T](err)` (1.26+) for extraction.
 
 # Concurrency & Context
 * **Share by Communicating**: Use channels for orchestration, mutexes for state.
-* **Context Propagation**: Always pass `context.Context` to support cancellation and tracing.
+* **Context Propagation**: Always pass `context.Context`. Use `signal.NotifyContext` (1.26) with `context.CancelCauseFunc` to capture signal details.
+* **Cleanups (1.24)**: Prefer `runtime.AddCleanup` over `SetFinalizer` for more reliable resource management.
 * **Synctest (1.27)**: Use `testing/synctest` for deterministic testing of concurrent logic.
 
 # Naming
