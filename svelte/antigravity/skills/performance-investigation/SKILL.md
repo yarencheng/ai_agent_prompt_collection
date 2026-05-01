@@ -1,30 +1,28 @@
 # Svelte Performance Investigation
 
-Specialized capability for investigating and optimizing performance in Svelte and SvelteKit.
+Specialized capability for investigating and optimizing performance in Svelte and SvelteKit, using modern profiling and benchmarking standards.
 
 ## Purpose
 Use this skill when:
 - Identifying bottlenecks in the Svelte compiler or SvelteKit runtime.
-- Analyzing memory leaks or CPU hotspots.
+- Analyzing memory leaks, CPU hotspots, or reactivity overhead.
 - Benchmarking changes to ensure no regressions.
-- Investigating reactivity overhead or Rune-related regressions.
+- Optimizing bundle size and asset loading (images, fonts).
 
 ## Resources
 - `rules/general.md`: Coding conventions and Runes best practices.
-- `rules/commands.md`: Standard commands and `runtime-runes` tests.
-
-## Examples
-- `examples/report.md`: Example of a performance bottleneck analysis.
+- `rules/commands.md`: Standard commands, `runtime-runes` tests, and performance tools.
 
 ## Best Practices
-1. **Empirical Measurement**: Always use profiling tools (e.g., Chrome DevTools, Node.js `--inspect`) to identify the root cause before optimizing.
-2. **Isolation**: Isolate the component or logic being investigated to reduce noise in measurements.
-3. **Repeatability**: Run benchmarks multiple times and use the average/median to account for variance.
-4. **Flakiness Awareness**: Be aware of browser test flakiness; run tests multiple times if results are inconsistent.
-5. **Rune Awareness**: Svelte 5 reactivity is runtime-based. Use `$inspect` to trace state changes and `$state.raw` to optimize large datasets.
+1. **Empirical Measurement**: Use profiling tools (Chrome DevTools, Node.js `--inspect`) to identify the root cause. Do not optimize blindly.
+2. **Isolation**: Isolate the logic being investigated to reduce noise.
+3. **Repeatability**: Run benchmarks multiple times and use the **median** results to account for system variance.
+4. **Rune Awareness**: Svelte 5 reactivity is runtime-based. Use `$inspect.trace` to trace state changes and `$state.raw` to optimize large datasets.
+5. **Bundle Analysis**: Use `rollup-plugin-visualizer` to identify large dependencies.
+6. **Asset Optimization**: Use `@sveltejs/enhanced-img` for images and preload critical fonts in the `handle` hook.
 
 ## Workflow
-1. **Profile**: Use `pnpm run dev` and profiling tools to capture performance data.
-2. **Analyze**: Identify long-running tasks or excessive memory usage.
-3. **Optimize**: Apply surgical changes following Svelte conventions (e.g., refactoring to `$state.raw` or optimizing `$derived` chains).
-4. **Verify**: Re-run the profile and compare results with the baseline. Run `pnpm test runtime-runes` if applicable.
+1. **Profile**: Use `pnpm run dev` and Chrome Performance/Memory tabs to capture data.
+2. **Analyze**: Identify long-running tasks, excessive memory usage, or deep reactivity chains.
+3. **Optimize**: Apply surgical changes (e.g., `$state.raw`, `$derived.by`, or database joins to prevent waterfalls).
+4. **Verify**: Re-run the profile and compare median results with the baseline. Run `pnpm test runtime-runes` if applicable.

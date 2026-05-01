@@ -8,12 +8,14 @@ Follow these rules strictly when working in the Svelte or SvelteKit repositories
 
 ## Reactivity (Svelte 5 Runes)
 Svelte 5 uses runes for explicit reactivity. **Always use runes mode for new code.**
-- **State**: Use `$state` for reactive variables. Use `$state.raw` for large collections or objects that don't need deep reactivity.
-- **Derivations**: Use `$derived` for state that depends on other state. Use `$derived.by` for complex logic.
-- **Effects**: Use `$effect` for side effects that synchronize with the DOM or external systems. Use `$effect.pre` to run before the DOM updates. Prefer `$derived` over `$effect` whenever possible.
-- **Props**: Use `$props` to receive component properties through destructuring.
+- **State**: Use `$state` for reactive variables. Use `$state.raw` for large collections or objects that don't need deep reactivity (e.g., API responses).
+- **Derivations**: Use `$derived` for state that depends on other state. Use `$derived.by` for complex logic. `$derived` is writable and will re-evaluate when its expression changes.
+- **Effects**: Use `$effect` for side effects that synchronize with the DOM or external systems. Prefer `{@attach ...}` for library synchronization and `$derived` for state derivations.
+- **Props**: Use `$props` to receive component properties through destructuring. Treat props as though they will change; use `$derived` for values dependent on props.
 - **Binding**: Use `$bindable` to denote props that can be bound to by the parent.
-- **Legacy**: Avoid `export let` (use `$props`), `$: ` (use `$derived`), and `createEventDispatcher` (use callback props).
+- **Debugging**: Use `$inspect` to trace state changes and `$inspect.trace(label)` as the first line of an effect or derivation to identify dependencies.
+- **External**: Use `createSubscriber` for observing things external to Svelte.
+- **Legacy**: Avoid `export let` (use `$props`), `$: ` (use `$derived`), `createEventDispatcher` (use callback props), `<svelte:component this={...}>` (use `<DynamicComponent>`), and `<svelte:self>` (use explicit import).
 
 ## Formatting
 - **Indentation**: Use **Tabs** for all indentation. Never use spaces.
@@ -33,45 +35,44 @@ Svelte 5 uses runes for explicit reactivity. **Always use runes mode for new cod
 - **Logic Files**: Use `.svelte.js` or `.svelte.ts` file extensions for modules that use runes.
 
 ## API Design & Events
-- **Public APIs**: Provide a single object as the argument to public APIs. This object can have multiple properties.
-- **Event Handlers**: Use callback props (e.g., `onclick`, `onchange`) instead of the `on:` directive or `createEventDispatcher`.
-- **Snippets**: Use snippets (`{#snippet ...}`) and the `{@render ...}` tag instead of slots for passing UI content to components.
+- **Public APIs**: Provide a single object as the argument to public APIs.
+- **Event Handlers**: Use callback props (e.g., `onclick`, `onchange`) instead of the `on:` directive. Use `<svelte:window>` and `<svelte:document>` for global listeners instead of `onMount`.
+- **Snippets**: Use snippets (`{#snippet ...}`) and the `{@render ...}` tag instead of slots. Snippets declared at the top level are available in `<script>`.
+- **Attributes**: Use clsx-style arrays and objects in `class` attributes instead of the `class:` directive.
+
+## Styling
+- **Custom Properties**: Use the `style:` directive (e.g., `style:--columns={columns}`) to pass JS variables to CSS.
+- **Child Styling**: Prefer CSS custom properties (`--prop`) for styling child components. Use `:global` only as a last resort for library components.
+
+## Accessibility
+- **Titles**: Provide unique, descriptive titles using `<svelte:head>` on every page for route announcements.
+- **Focus**: Use `afterNavigate` or the `keepFocus` option in `goto` to manage user focus after navigations.
+- **Language**: Set the correct `lang` attribute in `app.html` or dynamically via the `handle` hook.
+
+## Context
+- **Type Safety**: Use `createContext` instead of `setContext`/`getContext` for type safety.
+- **Leaking**: Use context to scope state and prevent leaks between users during SSR.
 
 ## Monorepo Management
-- **Overrides**: Use `pnpm.overrides` in the root `package.json` to test against local changes in dependencies (e.g., Vite).
+- **Overrides**: Use `pnpm.overrides` in the root `package.json` to test against local changes.
 - **Playground**: Use `playgrounds/basic` for local experimentation.
-- **Test Strategy**: Avoid creating new test projects under `packages/kit/test/apps` but reuse an existing one when possible.
+- **Test Strategy**: Avoid creating new test projects under `packages/kit/test/apps` but reuse an existing one when possible. Use keyed `{#each}` blocks for better DOM performance.
 
 ## Typing (JSDoc)
 - Use JSDoc annotations for all function parameters and return types.
 - **Public API Examples**: Use `@example` with code blocks for public APIs.
-- Complex types: `/** @type {Array<{ type: string }>} */`.
-- Type casting: `/** @type {Error} */ (err)`.
-- **Type Generation**: Review generated types (`generate:types` or `prepublishOnly`) but **DO NOT** format them with Prettier.
+- **Type Generation**: Review generated types but **DO NOT** format them with Prettier.
 
 ## Error Handling
-- Use `instanceof` to check for known error types (e.g., `HttpError`, `SvelteKitError`).
+- Use `instanceof` to check for known error types (e.g., `HttpError`).
 - Use optional chaining (`?.`) and nullish coalescing (`??`) for safety.
 
-## Comments
-- Use **inline comments** for clarifications (e.g., `// no match equals invalid header — ignore`).
-- Avoid redundant comments that simply restate the code.
-
-## Breaking Changes
-When proposing a breaking change, include the following checklist in the PR description:
-- **Who does this affect**:
-- **How to migrate**:
-- **Why make this breaking change**:
-- **Severity**: (number of people affected x effort)
-
 ## RFC Process
-Proposals for large new features or major changes must go through the RFC process.
-1. Discuss the idea in the community/Discord.
-2. Create an RFC in the `sveltejs/rfcs` repository.
-3. Wait for feedback and approval from maintainers before implementing.
+Proposals for large new features must go through the RFC process.
+1. Discuss in community/Discord.
+2. Create an RFC in `sveltejs/rfcs`.
+3. Wait for approval before implementation.
 
 ## Documentation Synchronization
-When changing APIs or features:
-1. Update the relevant `.md` files in the `documentation/` directory.
-2. Use `pnpm sync-all` to ensure documentation and packages remain in sync.
-3. Review generated types and documentation previews before submission.
+- Update `.md` files in the `documentation/` directory when changing APIs.
+- Use `pnpm sync-all` to ensure documentation and packages remain in sync.
