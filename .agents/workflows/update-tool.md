@@ -20,7 +20,7 @@ description: Update the workflow files for a tool
   # Update Workflow
   * **Constraints**:
     * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool's version directory). Do NOT access or use any files outside of this directory.
-    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files.
+    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files. **All output (implementation plans, rules, skills, workflows) MUST be version-agnostic.** Do NOT include version numbers or version ranges (e.g., "Go 1.26", "v1.1 - v1.5") in any titles, summaries, or content.
     * **General Update**: Do NOT focus on a specific reason or incremental update path. Update the tool components as a whole based on all available documentation in the workdir.
   * **Requirement**: Use the `@[/google-antigravity]` skill to manage all agent components.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**` (relative to the `antigravity/` directory).
@@ -39,11 +39,11 @@ description: Update the workflow files for a tool
   ---
   description: Evaluate the tool components against the latest documentation and best practices
   ---
-
+ 
   # Evaluation Workflow
   * **Constraints**:
     * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool's version directory). Do NOT access or use any files outside of this directory.
-    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files.
+    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files. **All output (gap analysis, quality checks) MUST be version-agnostic.** Do NOT include version numbers or version ranges in any reports or summaries.
     * **General Evaluation**: Do NOT focus on a specific reason or incremental update path. Evaluate the tool components as a whole against all available documentation in the workdir.
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**` (relative to the `antigravity/` directory).
