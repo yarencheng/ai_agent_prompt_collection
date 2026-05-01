@@ -1,6 +1,7 @@
 ---
 title: Modern Testing
 description: Best practices for testing Go code using modern features and patterns.
+trigger: always_on
 ---
 
 # Test Structure

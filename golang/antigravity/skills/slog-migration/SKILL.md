@@ -1,4 +1,5 @@
 ---
+name: slog-migration
 description: Assist in migrating Go applications from standard 'log' or 'logrus' to structured 'log/slog'.
 ---
 

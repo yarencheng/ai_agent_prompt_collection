@@ -1,6 +1,7 @@
 ---
 title: Idiomatic Go
 description: Core principles and idiomatic patterns for writing clear, maintainable Go code.
+trigger: always_on
 ---
 
 # Core Principles

@@ -1,6 +1,7 @@
 ---
 name: compose-best-practices
 description: Best practices for designing multi-container architectures with Docker Compose.
+trigger: always_on
 ---
 
 # Docker Compose Best Practices

@@ -1,6 +1,7 @@
 ---
 title: Modern Go (1.18+)
 description: Best practices for using modern Go features like Generics, Iterators, and the enhanced standard library.
+trigger: always_on
 ---
 
 # Generics (Go 1.18+)

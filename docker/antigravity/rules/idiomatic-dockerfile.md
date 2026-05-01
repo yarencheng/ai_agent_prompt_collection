@@ -1,6 +1,7 @@
 ---
 name: idiomatic-dockerfile
 description: Best practices for writing efficient, secure, and maintainable Dockerfiles.
+trigger: always_on
 ---
 
 # Idiomatic Dockerfile

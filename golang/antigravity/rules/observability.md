@@ -1,6 +1,7 @@
 ---
 title: Observability & Logging
 description: Standards for structured logging, metrics, and tracing in Go applications.
+trigger: always_on
 ---
 
 # Structured Logging (log/slog)

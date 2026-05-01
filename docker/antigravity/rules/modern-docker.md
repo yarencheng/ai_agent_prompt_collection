@@ -1,6 +1,7 @@
 ---
 name: modern-docker
 description: Leveraging modern Docker features and ecosystem tools.
+trigger: always_on
 ---
 
 # Modern Docker Features

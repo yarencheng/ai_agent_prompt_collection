@@ -1,4 +1,5 @@
 ---
+name: generics
 description: Refactor Go code to use Generics where appropriate to reduce duplication and improve type safety.
 ---
 

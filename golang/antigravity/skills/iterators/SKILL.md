@@ -1,4 +1,5 @@
 ---
+name: iterators
 description: Refactor Go loops to use modern Iterators (Go 1.23+) for cleaner and more composable code.
 ---
 

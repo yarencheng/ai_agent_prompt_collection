@@ -1,5 +1,5 @@
 ---
-description: Evaluate the AI agent configurations against reference
+description: Evaluate the AI agent configurations against reference documentation.
 ---
 
 # Evaluation Workflow

@@ -1,6 +1,7 @@
 ---
 name: security
 description: Security guidelines for Docker images and containers.
+trigger: always_on
 ---
 
 # Docker Security Rules
