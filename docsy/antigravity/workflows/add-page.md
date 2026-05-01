@@ -14,8 +14,13 @@ Follow these steps to add a new page to the documentation.
     - Do NOT quote simple strings.
     - Set a `weight` if specific ordering is required.
 4.  **Draft Content**:
-    - Use **present tense**.
+    - Use **present tense** (except for Changelogs or describing past releases).
     - Follow the Google Developer Documentation Style Guide.
     - Use appropriate Docsy shortcodes (e.g., `{{% notice %}}`, `{{% blocks/section %}}`).
-5.  **Review Lists**: Ensure list items follow the period usage rules (periods for complete sentences, none for fragments).
-6.  **Verify Build**: Run `npm run serve` or `hugo serve` to verify the page renders correctly.
+    - Use `prettier-ignore` comments to protect complex template logic.
+5.  **Format Check**: Run `npm run check:format` and `npm run fix:format` if available.
+6.  **Verify Build**:
+    - Run `hugo serve --themesDir ../..` from `docsy.dev`.
+    - Alternatively, use `docker-compose up` to preview in a container.
+7.  **Submit**: Prefix the PR with `WIP` until it is ready for final review.
+

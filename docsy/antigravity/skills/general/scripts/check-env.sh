@@ -15,6 +15,14 @@ else
     echo "❌ Error: Hugo is not installed."
 fi
 
+# Check Go
+if command -v go >/dev/null 2>&1; then
+    GO_VERSION=$(go version)
+    echo "✅ Go found: $GO_VERSION"
+else
+    echo "⚠️  Warning: Go is not installed. Required if using Docsy as a Hugo module."
+fi
+
 # Check Node.js
 if command -v node >/dev/null 2>&1; then
     NODE_VERSION=$(node -v)

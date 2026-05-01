@@ -13,11 +13,17 @@ Follow these steps when reviewing documentation pull requests or local changes.
 2.  **Verify Style Guide**:
     - Does the content follow the Google Developer Documentation Style Guide?
     - Is the **present tense** used (except for changelogs/past releases)?
+    - Does the Changelog use **past tense**?
 3.  **Check List Punctuation**:
     - Do complete sentences in lists have periods?
     - Are fragments in lists free of periods?
-4.  **Verify Shortcodes**:
-    - Are Docsy shortcodes used correctly and effectively?
+4.  **Verify Formatting**:
+    - Has `npm run check:format` been run?
+    - Are complex shortcodes protected with `prettier-ignore`?
 5.  **Build Check**:
+    - Check the **Netlify deploy preview** in the PR status.
     - Does the site build without errors?
-    - Are there any PostCSS or SCSS warnings?
+6.  **Compliance**:
+    - Is the contributor CLA compliant?
+    - Is the PR title prefixed with `WIP` if still in progress?
+
