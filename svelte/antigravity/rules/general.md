@@ -2,4 +2,32 @@
 trigger: always_on
 ---
 
-* TODO
+# Svelte & SvelteKit Coding Conventions
+
+Follow these rules strictly when working in the Svelte or SvelteKit repositories.
+
+## Formatting
+- **Indentation**: Use **Tabs** for all indentation. Never use spaces.
+- **Quotes**: Use **single quotes** (`'`) for strings.
+- **Trailing Commas**: Do **not** use trailing commas.
+- **Line Length**: Limit lines to **100 characters**.
+- **Auto-format**: Always run `pnpm run format` before finishing a task.
+
+## Naming Conventions
+- **Internal Members**: Use `snake_case` for internal variables, methods, and functions.
+- **Public Members**: Use `camelCase` for public variables, methods, and functions.
+
+## Imports & Exports
+- **Named Exports**: Use named exports for all functions and classes. **Avoid default exports**.
+- **Functions**: Use named function declarations (`export function ...`) for exported functions. Use arrow functions for internal callbacks.
+- **JSDoc Imports**: Use JSDoc type imports: `/** @import { Type } from 'module' */`.
+
+## Typing (JSDoc)
+- Use JSDoc annotations for all function parameters and return types.
+- Complex types: `/** @type {Array<{ type: string }>} */`.
+- Type casting: `/** @type {Error} */ (err)`.
+- Ensure `checkJs: true` and `strict: true` are honored in the environment.
+
+## Error Handling
+- Use `instanceof` to check for known error types (e.g., `HttpError`, `SvelteKitError`).
+- Use optional chaining (`?.`) and nullish coalescing (`??`) for safety.

@@ -7,3 +7,12 @@
 [submodule "docker/references/github.com/docker/docs.git"]
 	path = docker/references/github.com/docker/docs.git
 	url = https://github.com/docker/docs.git
+[submodule "svelte/references/github.com/sveltejs/svelte.git"]
+	path = svelte/references/github.com/sveltejs/svelte.git
+	url = https://github.com/sveltejs/svelte.git
+[submodule "svelte/references/github.com/sveltejs/kit.git"]
+	path = svelte/references/github.com/sveltejs/kit.git
+	url = https://github.com/sveltejs/kit.git
+[submodule "svelte/references/github.com/sveltejs/svelte.dev.git"]
+	path = svelte/references/github.com/sveltejs/svelte.dev.git
+	url = https://github.com/sveltejs/svelte.dev.git
