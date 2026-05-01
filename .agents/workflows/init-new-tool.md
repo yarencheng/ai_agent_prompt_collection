@@ -10,7 +10,7 @@ description: Initialize a new tool from a template
 * If it exists, ask the user if they want to overwrite it before proceeding.
 
 # Step 1: Copy Template
-* Identify the latest version directory in `_template/`.
+* Identify the template directory in `_template/`.
 * Copy all contents from the latest template to `[NAME]`.
 
 # Step 2: Initialize Context

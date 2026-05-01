@@ -4,14 +4,13 @@ description: Update the workflow files for a tool
 
 # Parameters
 1. Name: Name of the tool (e.g., golang)
-2. Version: Version of the tool (e.g., 1.22)
 
 # Step 0: Validation
-* Verify that the directory `[NAME]/[VERSION]/antigravity` exists.
+* Verify that the directory `[NAME]/antigravity` exists.
 * If it does not exist, stop and inform the user that they should run `init-new-tool` first.
 
 # Step 1: Define Update Workflow
-* Set the content of `[NAME]/[VERSION]/antigravity/workflow-update.md` to the following (ensure no version numbers or `[VERSION]` placeholders are included):
+* Set the content of `[NAME]/antigravity/workflow-update.md` to the following:
   ```markdown
   ---
   description: Update the tool components based on the latest documentation
@@ -19,12 +18,12 @@ description: Update the workflow files for a tool
 
   # Update Workflow
   * **Constraints**:
-    * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool's version directory). Do NOT access or use any files outside of this directory.
-    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files. **All output (implementation plans, rules, skills, workflows) MUST be version-agnostic.** Do NOT include version numbers or version ranges (e.g., "Go 1.26", "v1.1 - v1.5") in any titles, summaries, or content.
+    * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool directory). Do NOT access or use any files outside of this directory.
+    * **Path Blindness**: Do NOT use any information from the file path, directory names, or workspace path. Rely exclusively on the content of the files. **All output (implementation plans, rules, skills, workflows) MUST be agnostic to the local environment.** Do NOT include path-specific information in any titles, summaries, or content.
     * **General Update**: Do NOT focus on a specific reason or incremental update path. Update the tool components as a whole based on all available documentation in the workdir.
   * **Requirement**: Use the `@[/google-antigravity]` skill to manage all agent components.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**` (relative to the `antigravity/` directory).
-  * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and all versioned release notes.
+  * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and all release notes.
   * (C) Extract and summarize the core features, idiomatic patterns, and established best practices from the identified documentation.
   * (D) Process these findings systematically:
     * Update `rules/**`, `skills/**`, and `workflows/**` to incorporate the identified best practices.
@@ -34,7 +33,7 @@ description: Update the workflow files for a tool
   ```
 
 # Step 2: Define Evaluation Workflow
-* Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following (ensure no version numbers or `[VERSION]` placeholders are included):
+* Set the content of `[NAME]/antigravity/workflow-evaluate.md` to the following:
   ```markdown
   ---
   description: Evaluate the tool components against the latest documentation and best practices
@@ -42,12 +41,12 @@ description: Update the workflow files for a tool
  
   # Evaluation Workflow
   * **Constraints**:
-    * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool's version directory). Do NOT access or use any files outside of this directory.
-    * **Path/Version Blindness**: Do NOT use any information from the file path, directory names, or workspace path (e.g., version strings like "1.26"). Rely exclusively on the content of the files. **All output (gap analysis, quality checks) MUST be version-agnostic.** Do NOT include version numbers or version ranges in any reports or summaries.
+    * **Workdir Isolation**: This workflow MUST only operate within its own workdir (the tool directory). Do NOT access or use any files outside of this directory.
+    * **Path Blindness**: Do NOT use any information from the file path, directory names, or workspace path. Rely exclusively on the content of the files. **All output (gap analysis, quality checks) MUST be agnostic to the local environment.** Do NOT include path-specific information in any reports or summaries.
     * **General Evaluation**: Do NOT focus on a specific reason or incremental update path. Evaluate the tool components as a whole against all available documentation in the workdir.
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**` (relative to the `antigravity/` directory).
-  * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", versioned references).
+  * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", references).
   * (C) Extract the core features and recommended best practices for the tool from the identified documentation.
   * **Cumulative Gap Analysis**:
     * Compare the features and best practices identified in (C) against the implementation in (A).
@@ -57,4 +56,4 @@ description: Update the workflow files for a tool
   ```
 
 # Step 3: Execute Evaluation
-* Run the newly updated `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` and report the findings to the user.
+* Run the newly updated `[NAME]/antigravity/workflow-evaluate.md` and report the findings to the user.
