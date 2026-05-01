@@ -6,7 +6,7 @@ trigger: always_on
 
 # Standard Library Additions
 * **UUID (1.27)**: Use the built-in `uuid` package for generating and parsing UUIDs.
-* **Crypto Migrations (1.24)**: Use built-in `crypto/hkdf`, `crypto/pbkdf2`, and `crypto/sha3` instead of `x/crypto`.
+* **Crypto Migrations (1.24/1.26)**: Use built-in `crypto/hkdf`, `crypto/pbkdf2`, `crypto/sha3`, and `crypto/hpke` (1.26).
 * **CutLast (1.27)**: Use `bytes.CutLast` and `strings.CutLast` to simplify slicing around the last occurrence of a separator.
 * **FS Isolation (1.24)**: Use `os.Root` to perform filesystem operations within a specific directory.
 * **Slices & Maps**: Prefer `slices` and `maps` packages over manual loops. Use `slices.Collect` and `slices.Sorted`.
@@ -30,3 +30,4 @@ trigger: always_on
 # Toolchain & Config
 * **Module Ignoring (1.25)**: Use the `ignore` directive in `go.mod` to exclude specific directories from package patterns (e.g., `./...`).
 * **WaitGroup.Go (1.25)**: Use `sync.WaitGroup.Go(f)` for cleaner goroutine lifecycle management.
+* **Tool Directive (1.24)**: Manage build tools within `go.mod` using `tool` and `go tool`.

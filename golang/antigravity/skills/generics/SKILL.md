@@ -26,6 +26,9 @@ if pathErr, ok := errors.AsType[*os.PathError](err); ok {
 }
 ```
 
+## Scripts
+* `scan-repetitive-funcs.sh`: Searches for repetitive functions that could be candidates for generics.
+
 ### Generic Filter
 ```go
 func Filter[T any](s []T, f func(T) bool) []T {

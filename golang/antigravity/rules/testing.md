@@ -13,7 +13,7 @@ trigger: always_on
 * **Test Context (1.24)**: Use `t.Context()` and `b.Context()` for a context that is automatically canceled after the test and before cleanups.
 * **Working Directory (1.24)**: Use `t.Chdir()` to change the working directory for the duration of the test.
 * **Cleanup**: Prefer `t.Cleanup()` over `defer` for resource management.
-* **Artifacts (1.26)**: Use `t.ArtifactDir()` to store test logs, dumps, or screenshots.
+* **Artifacts (1.26)**: Use `t.ArtifactDir()` to store test logs, dumps, or screenshots. Artifacts are automatically managed and optionally persisted with `-artifacts`.
 * **Helpers**: Use `t.Helper()` to maintain relevant stack traces.
 
 # Advanced Testing

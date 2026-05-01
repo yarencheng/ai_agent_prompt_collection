@@ -33,3 +33,6 @@ if err != nil {
 f.Write([]byte("secure data"))
 f.Close()
 ```
+
+## Scripts
+* `scan-unsafe-fs.sh`: Scans for potentially unsafe file operations that could benefit from `os.Root`.

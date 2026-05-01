@@ -31,3 +31,6 @@ slog.ErrorContext(ctx, "failed to process request",
     "error", err,
 )
 ```
+
+## Scripts
+* `scan-log-calls.sh`: Searches for standard library log calls that should be migrated to `slog`.

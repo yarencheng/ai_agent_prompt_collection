@@ -11,7 +11,8 @@ trigger: always_on
 * **Executable Dependencies (1.24)**: Use the `tool` directive in `go.mod` to track build tools. Run them with `go tool <tool>`.
 
 # Correctness & Safety
-* **Modernizers (1.26)**: Use `go fix` with modernizers to automate idiom updates. Treat `go vet` and lint warnings as errors.
+* **Modernizers (1.26)**: Use `go fix` with modernizers to automate idiom updates. This is the primary tool for keeping codebases current.
+* **Secret Erasure (1.26)**: Use `runtime/secret` to securely erase cryptographic temporaries from registers and stack.
 * **Version Safety (1.27)**: `go test` enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
 * **Strong Typing**: Minimize `any`. Use generics for type-safe containers and utilities.
 * **UUID (1.27)**: Use the built-in `uuid` package for generating and parsing UUIDs. Avoid external dependencies like `google/uuid`.
