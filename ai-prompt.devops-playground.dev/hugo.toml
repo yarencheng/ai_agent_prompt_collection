@@ -38,3 +38,6 @@ offlineSearch = true
 footer_menu_title = "AI Prompt Collection"
 # Enable dark mode toggle
 color_palette_toggle = true
+# Sidebar configuration
+sidebar_menu_compact = false
+sidebar_menu_foldable = true
