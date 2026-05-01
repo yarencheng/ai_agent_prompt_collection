@@ -1,3 +1,8 @@
+---
+name: markdown-linter
+description: A skill for linting and fixing Markdown files to ensure they meet the project's documentation standards.
+---
+
 # Markdown Linter
 
 A skill for linting and fixing Markdown files to ensure they meet the project's documentation standards.

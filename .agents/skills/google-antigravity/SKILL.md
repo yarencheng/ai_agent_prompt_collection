@@ -1,3 +1,8 @@
+---
+name: google-antigravity
+description: Expert at creating and managing Google Antigravity components (Skills, Rules, and Workflows).
+---
+
 # Google Antigravity Component Manager
 
 Expert at creating and managing Google Antigravity components (Skills, Rules, and Workflows). This skill ensures all components follow Google Antigravity best practices for modularity, clarity, and effectiveness.
