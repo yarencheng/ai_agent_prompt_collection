@@ -6,12 +6,12 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
 [languages]
-  [languages.en]
-    title = "AI Prompt Collection"
-    description = "A curated collection of AI agent prompts and configurations."
-    languageName = "English"
-    contentDir = "content/en"
-    weight = 1
+[languages.en]
+title = "AI Prompt Collection"
+description = "A curated collection of AI agent prompts and configurations."
+languageName = "English"
+contentDir = "content/en"
+weight = 1
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -38,8 +38,3 @@ offlineSearch = true
 footer_menu_title = "AI Prompt Collection"
 # Enable dark mode toggle
 color_palette_toggle = true
-
-[[menu.main]]
-  name = "Documentation"
-  url = "/docs/"
-  weight = 10
