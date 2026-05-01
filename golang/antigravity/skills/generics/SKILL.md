@@ -1,38 +1,31 @@
 ---
 name: generics
-description: Refactor Go code to use Generics where appropriate to reduce duplication and improve type safety.
+description: Refactor to type-safe, generic Go code to eliminate duplication.
 ---
 
-# Generics Refactoring Skill
+# Generics Refactoring
 
 ## Scenarios
-1. **Duplicate Collection Logic**: When multiple functions perform the same operation on different types of slices or maps.
-2. **Type Assertion Overload**: When `interface{}` (or `any`) is used with frequent type assertions.
-3. **Container Implementation**: When implementing data structures like stacks, queues, or caches.
+* **Collection Logic**: Multiple implementations for different slice/map types.
+* **Type Assertions**: Frequent use of `any` with manual assertions.
+* **Reusable Containers**: Implementing stacks, queues, caches.
 
 ## Instructions
-1. **Identify Candidates**: Look for functions like `func SumInts(s []int) int` and `func SumFloats(s []float64) float64`.
-2. **Define Type Parameters**: Use square brackets `[T constraints.Ordered]` (or similar) to define the type parameters.
-3. **Update Signature**: Replace specific types with the type parameter.
-4. **Leverage Stdlib**: Check if `golang.org/x/exp/slices` or the built-in `slices` package already provides the functionality.
-5. **Verify**: Ensure the refactored code maintains the same behavior and performance.
+1. **Identify Redundancy**: Look for functions like `SumInts`, `SumFloats`.
+2. **Define Constraints**: Use `[T constraints.Ordered]` or `[T any]`.
+3. **Consolidate**: Replace type-specific logic with a single generic implementation.
+4. **Leverage Stdlib**: Use `slices` and `maps` packages where possible.
 
 ## Examples
-### Type-Safe Error Extraction (Go 1.26)
+### Type-Safe Error Extraction (1.26)
 ```go
-// Before: Manual variable declaration and type assertion
-var pathErr *os.PathError
-if errors.As(err, &pathErr) {
-    fmt.Println(pathErr.Path)
-}
-
-// After: Direct extraction with generics
+// Direct extraction without manual pointer declaration
 if pathErr, ok := errors.AsType[*os.PathError](err); ok {
     fmt.Println(pathErr.Path)
 }
 ```
 
-### Generic Collection Filter
+### Generic Filter
 ```go
 func Filter[T any](s []T, f func(T) bool) []T {
     var res []T

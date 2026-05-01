@@ -1,31 +1,30 @@
 ---
 title: Idiomatic Go
-description: Core principles and idiomatic patterns for writing clear, maintainable Go code.
+description: Core principles and pragmatic patterns for modern Go development.
 trigger: always_on
 ---
 
 # Core Principles
-* **Simplicity**: Favor simple, readable code over clever or complex solutions.
-* **Clarity**: Code should be self-documenting. Use descriptive names for variables with long scopes and concise names for short-lived ones.
-* **Gofmt**: Always adhere to standard formatting. Never argue about style; let the tool decide.
+* **Pragmatic Simplicity**: Favor readable, maintainable code. Avoid "clever" solutions.
+* **Gofmt**: Standard formatting is non-negotiable. Let the tool decide.
+* **Standard Library First**: Prefer the stdlib (especially new additions like `uuid`) over external dependencies.
 
-# Correctness First
-* **Zero Trust Variables**: Always initialize variables and check for zero values where appropriate.
-* **Static Analysis**: Treat `go vet` and lint warnings as errors. Use `golangci-lint` with strict settings (e.g., `revive`, `govet`, `staticcheck`).
-* **Type Safety**: Avoid `any` or `interface{}` unless implementing generic containers or interfaces. Use strong typing to catch errors at compile time.
+# Correctness & Safety
+* **Static Analysis**: Treat `go vet` and lint warnings as errors.
+* **Version Safety (1.27)**: `go test` now enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
+* **Strong Typing**: Minimize `any`. Use generics for type-safe containers and utilities.
 
 # Error Handling
-* **Errors are values**: Handle errors explicitly.
-* **Return early**: Use "guard clauses" to handle errors and edge cases at the top of functions to reduce nesting.
-* **Wrap errors**: Use `%w` with `fmt.Errorf` to provide context while preserving the original error for `errors.Is` and `errors.As`.
+* **Explicit Handling**: Errors are values; handle them immediately.
+* **Guard Clauses**: Return early to minimize nesting.
+* **Wrapping**: Use `%w` with `fmt.Errorf` for context. Prefer `errors.AsType[T](err)` (1.26+) for extraction.
 
-# Concurrency
-* **CSP Pattern**: "Do not communicate by sharing memory; instead, share memory by communicating."
-* **Channels vs Mutexes**: Use channels for orchestration/data flow and mutexes for state protection.
-* **Context**: Always propagate `context.Context` to handle cancellation, timeouts, and request-scoped values.
+# Concurrency & Context
+* **Share by Communicating**: Use channels for orchestration, mutexes for state.
+* **Context Propagation**: Always pass `context.Context` to support cancellation and tracing.
+* **Synctest (1.27)**: Use `testing/synctest` for deterministic testing of concurrent logic.
 
-# Naming Conventions
-* **Packages**: Short, lowercase, single-word names (e.g., `net/http`, `encoding/json`). Avoid `util` or `common`.
-* **Interfaces**: Usually end in `-er` (e.g., `Reader`, `Writer`, `Stringer`).
-* **Contextual Clarity**: Naming should reflect the lifetime and scope. `i` is fine for a 3-line loop; `reconciliationInterval` is required for a configuration field.
-* **Exported names**: PascalCase for exported, camelCase for unexported.
+# Naming
+* **Concise & Contextual**: Short names for short scopes, descriptive for long.
+* **Interface Naming**: Usually end in `-er`.
+* **Exporting**: PascalCase for exported, camelCase for internal.

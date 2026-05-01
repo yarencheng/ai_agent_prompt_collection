@@ -1,28 +1,23 @@
 ---
-title: Modern Go (1.18+)
-description: Best practices for using modern Go features like Generics, Iterators, and the enhanced standard library.
+title: Modern Go (1.27+)
+description: Leveraging the latest features in the Go toolchain and standard library.
 trigger: always_on
 ---
 
-# Generics (Go 1.18+)
-* **Use for data structures**: Generics are ideal for implementing reusable containers (linked lists, trees, caches).
-* **Utility functions**: Use generics for operations on slices and maps to avoid duplication (see `slices` and `maps` packages).
-* **Error unwrapping (1.26)**: Use `errors.AsType[TargetError](err)` for type-safe error extraction without manual variable declaration.
-* **Avoid over-engineering**: Do not use generics unless they significantly reduce duplication or improve type safety.
+# Standard Library Additions
+* **UUID (1.27)**: Use the built-in `uuid` package for generating and parsing UUIDs. Avoid 3-party alternatives unless specialized features are required.
+* **CutLast (1.27)**: Use `bytes.CutLast` and `strings.CutLast` to simplify slicing around the last occurrence of a separator.
+* **Slices & Maps**: Prefer `slices` and `maps` packages over manual loops. Use `slices.Collect` and `slices.Sorted` for functional processing.
+* **Unique (1.22)**: Use `unique.Make` for interning values to reduce memory pressure on repetitive data.
 
-# Iterators (Go 1.23+)
-* **Range over functions**: Use the `iter` package to define custom iterators that can be used with `for-range`.
-* **Standard sequences**: Prefer `slices.All`, `slices.Values`, `maps.Keys`, and `maps.Values` for iterating over collections.
-* **Reflection Iterators (1.26)**: Use `reflect.Value.Fields()`, `reflect.Value.Methods()`, `reflect.Type.Ins()`, and `reflect.Type.Outs()` to iterate over struct fields, methods, and function parameters.
-* **Functional style**: Leverage `slices.Collect` and `slices.Sorted` for concise data processing.
+# Language & Runtime
+* **Generics**: Ideal for data structures and slice/map utilities. Avoid over-engineering.
+* **Iterators (1.23)**: Use `for-range` over functions. Leverage `reflect.Value.Fields()` (1.26) for efficient struct iteration.
+* **Error Extraction (1.26)**: Use `errors.AsType[T](err)` for type-safe unwrapping.
+* **PGO**: Use Profile-Guided Optimization for performance-critical applications.
 
-# Standard Library Enhancements
-* **Slices & Maps**: Use `slices` and `maps` packages instead of manual loops for searching, sorting, and cloning.
-* **Cmp package**: Use `cmp.Compare` and `cmp.Less` for standardized comparisons.
-* **Unique package**: Use `unique.Make` for interning/canonicalizing values to save memory on repetitive data.
-* **HTTP Routing**: Use wildcards `{id}` and method prefixes (e.g., `GET /user/{id}`) in `net/http.ServeMux`.
-* **Buffer Inspection (1.26)**: Use `bytes.Buffer.Peek(n)` to look ahead in a buffer without consuming data.
-
-# Performance
-* **Profile-Guided Optimization (PGO)**: Use PGO to improve performance of hot code paths.
-* **Allocation headers**: Be aware of 1.22+ runtime changes to memory alignment and metadata placement.
+# Network & IO
+* **HTTP Routing**: Use wildcards `{id}` and method prefixes in `net/http.ServeMux`.
+* **Automatic Draining (1.27)**: HTTP/1 `Response.Body` now auto-drains on close.
+* **HTTP/2 Priority (1.27)**: RFC 9218 priority signals are supported by default.
+* **Buffer Inspection (1.26)**: Use `bytes.Buffer.Peek(n)` for lookahead without consumption.
