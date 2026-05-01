@@ -28,16 +28,22 @@ Follow these rules strictly when working in the Svelte or SvelteKit repositories
 ## Monorepo Management
 - **Overrides**: Use `pnpm.overrides` in the root `package.json` to test against local changes in dependencies (e.g., Vite).
 - **Playground**: Use `playgrounds/basic` for local experimentation.
+- **Test Strategy**: Avoid creating new test projects under `packages/kit/test/apps` but reuse an existing one when possible.
 
 ## Typing (JSDoc)
 - Use JSDoc annotations for all function parameters and return types.
+- **Public API Examples**: Use `@example` with code blocks for public APIs.
 - Complex types: `/** @type {Array<{ type: string }>} */`.
 - Type casting: `/** @type {Error} */ (err)`.
-- Ensure `checkJs: true` and `strict: true` are honored in the environment.
+- **Type Generation**: Review generated types (`generate:types` or `prepublishOnly`) but **DO NOT** format them with Prettier.
 
 ## Error Handling
 - Use `instanceof` to check for known error types (e.g., `HttpError`, `SvelteKitError`).
 - Use optional chaining (`?.`) and nullish coalescing (`??`) for safety.
+
+## Comments
+- Use **inline comments** for clarifications (e.g., `// no match equals invalid header — ignore`).
+- Avoid redundant comments that simply restate the code.
 
 ## Breaking Changes
 When proposing a breaking change, include the following checklist in the PR description:

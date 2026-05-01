@@ -12,6 +12,9 @@ Use this skill when:
 - `rules/general.md`: Coding conventions.
 - `rules/commands.md`: Standard commands.
 
+## Examples
+- `examples/report.md`: Example of a performance bottleneck analysis.
+
 ## Best Practices
 1. **Empirical Measurement**: Always use profiling tools (e.g., Chrome DevTools, Node.js `--inspect`) to identify the root cause before optimizing.
 2. **Isolation**: Isolate the component or logic being investigated to reduce noise in measurements.

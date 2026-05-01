@@ -11,6 +11,10 @@ Use this skill when:
 ## Resources
 - `rules/general.md`: Coding conventions, RFC process, and breaking changes.
 - `rules/commands.md`: Standard commands for testing, building, and syncing.
+- `resources/packages.md`: Key packages and monorepo structure.
+
+## Examples
+- `examples/code-style.md`: Idiomatic code following all conventions.
 
 ## Best Practices
 1. **Build First**: Always run `pnpm build` if you change any shared package to ensure dependencies are updated.
@@ -18,6 +22,7 @@ Use this skill when:
 3. **Documentation Sync**: Use `pnpm sync-all` when modifying APIs to keep documentation in sync.
 4. **Changeset Mandatory**: Every user-facing change must include a changeset (run `pnpm changeset`).
 5. **Snapshot Awareness**: If tests fail due to expected output changes, use snapshot update commands.
+6. **Type Generation**: Use `prepublishOnly` (Kit) or `generate:types` (Core) and DO NOT format output with Prettier.
 
 ## Common Tasks
 - **Fixing a bug**: Follow the Bug Fix & PR Prep Workflow.
