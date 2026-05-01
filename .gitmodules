@@ -22,3 +22,6 @@
 [submodule "hugo/references/github.com/gohugoio/hugoDocs.git"]
 	path = hugo/references/github.com/gohugoio/hugoDocs.git
 	url = https://github.com/gohugoio/hugoDocs.git
+[submodule "docsy/references/github.com/google/docsy.git"]
+	path = docsy/references/github.com/google/docsy.git
+	url = https://github.com/google/docsy.git
