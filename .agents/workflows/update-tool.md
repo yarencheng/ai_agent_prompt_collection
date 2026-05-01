@@ -54,6 +54,3 @@ description: Update the workflow files for a tool
     * Provide a coverage estimate (e.g., "90% - missing advanced optimization rules").
   * **Quality Check**: Verify that all components follow the `@[/google-antigravity]` best practices.
   ```
-
-# Step 3: Execute Evaluation
-* Run the newly updated `[NAME]/antigravity/workflow-evaluate.md` and report the findings to the user.
