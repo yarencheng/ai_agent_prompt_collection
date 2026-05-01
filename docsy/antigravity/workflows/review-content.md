@@ -17,12 +17,14 @@ Follow these steps when reviewing documentation pull requests or local changes.
 3.  **Check List Punctuation**:
     - Do complete sentences in lists have periods?
     - Are fragments in lists free of periods?
-4.  **Verify Formatting**:
+4.  **Verify Formatting and Linting**:
     - Has `npm run check:format` been run?
+    - Has `npm run check:markdown` been run?
     - Are complex shortcodes protected with `prettier-ignore`?
 5.  **Build Check**:
     - Check the **Netlify deploy preview** in the PR status.
     - Does the site build without errors?
+    - Does the `LLMS` output format render correctly?
 6.  **Compliance**:
     - Is the contributor CLA compliant?
     - Is the PR title prefixed with `WIP` if still in progress?

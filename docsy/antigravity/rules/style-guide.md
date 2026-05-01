@@ -21,8 +21,10 @@ Enforce the following writing and formatting conventions for all documentation c
 - Keep punctuation consistent within each list.
 
 ## Formatting
-- **Tools**: Use Prettier and Markdownlint.
-- **Check/Fix**: Use `npm run check:format` to verify and `npm run fix:format` to apply corrections.
+- **Tools**: Use Prettier and Markdownlint (`markdownlint-cli2`).
+- **Scripts**:
+    - **Formatting**: Use `npm run check:format` to verify and `npm run fix:format` to apply corrections.
+    - **Linting**: Use `npm run check:markdown` and `npm run fix:markdown`.
 - **Prettier Ignores**: Use `<!-- prettier-ignore-start -->` and `<!-- prettier-ignore-end -->` to protect complex Hugo template logic (e.g., `tabpane` shortcodes) from being mangled by Prettier.
 - **Links**: Ensure all links are functional and use relative paths where appropriate.
 
