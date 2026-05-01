@@ -12,7 +12,9 @@ description: Standard workflow for fixing a bug and preparing a pull request in 
 
 2. **Implementation**:
    - Run `pnpm -F @sveltejs/kit sync` (or `pnpm sync-all`) to ensure routing info and types are up to date.
-   - Apply the fix following the `rules/general.md` conventions (Tabs, Single Quotes, No Trailing Commas, `snake_case` internal).
+   - Apply the fix following the `rules/general.md` conventions (Runes, Tabs, Single Quotes, No Trailing Commas, `snake_case` internal).
+   - Use **Runes** (`$state`, `$derived`, `$props`) for all new reactivity logic.
+   - Use **callback props** and **snippets** instead of legacy event dispatchers or slots.
    - Use JSDoc for any new functions or parameters, including `@example` for public APIs.
    - Use **inline comments** for clarifications in complex logic.
 
@@ -21,6 +23,7 @@ description: Standard workflow for fixing a bug and preparing a pull request in 
    - Run the specific test that was failing to confirm the fix.
    - If output changes are expected, run snapshot update commands: `UPDATE_SNAPSHOTS=true pnpm test`.
    - Run all unit tests: `pnpm -F @sveltejs/kit test:unit`.
+   - If Svelte core reactivity was touched, run `pnpm test runtime-runes`.
 
 4. **Pre-submission**:
    - **Mandatory Sequence**:

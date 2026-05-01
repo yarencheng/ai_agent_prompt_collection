@@ -6,6 +6,15 @@ trigger: always_on
 
 Follow these rules strictly when working in the Svelte or SvelteKit repositories.
 
+## Reactivity (Svelte 5 Runes)
+Svelte 5 uses runes for explicit reactivity. **Always use runes mode for new code.**
+- **State**: Use `$state` for reactive variables. Use `$state.raw` for large collections or objects that don't need deep reactivity.
+- **Derivations**: Use `$derived` for state that depends on other state. Use `$derived.by` for complex logic.
+- **Effects**: Use `$effect` for side effects that synchronize with the DOM or external systems. Use `$effect.pre` to run before the DOM updates. Prefer `$derived` over `$effect` whenever possible.
+- **Props**: Use `$props` to receive component properties through destructuring.
+- **Binding**: Use `$bindable` to denote props that can be bound to by the parent.
+- **Legacy**: Avoid `export let` (use `$props`), `$: ` (use `$derived`), and `createEventDispatcher` (use callback props).
+
 ## Formatting
 - **Indentation**: Use **Tabs** for all indentation. Never use spaces.
 - **Quotes**: Use **single quotes** (`'`) for strings.
@@ -21,9 +30,12 @@ Follow these rules strictly when working in the Svelte or SvelteKit repositories
 - **Named Exports**: Use named exports for all functions and classes. **Avoid default exports**.
 - **Functions**: Use named function declarations (`export function ...`) for exported functions. Use arrow functions for internal callbacks.
 - **JSDoc Imports**: Use JSDoc type imports: `/** @import { Type } from 'module' */`.
+- **Logic Files**: Use `.svelte.js` or `.svelte.ts` file extensions for modules that use runes.
 
-## API Design
+## API Design & Events
 - **Public APIs**: Provide a single object as the argument to public APIs. This object can have multiple properties.
+- **Event Handlers**: Use callback props (e.g., `onclick`, `onchange`) instead of the `on:` directive or `createEventDispatcher`.
+- **Snippets**: Use snippets (`{#snippet ...}`) and the `{@render ...}` tag instead of slots for passing UI content to components.
 
 ## Monorepo Management
 - **Overrides**: Use `pnpm.overrides` in the root `package.json` to test against local changes in dependencies (e.g., Vite).

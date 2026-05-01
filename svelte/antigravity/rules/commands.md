@@ -24,6 +24,7 @@ Standard commands for development, validation, and testing in the Svelte and Sve
 - **Playwright Env Vars**: Use `KIT_E2E_RETRIES=2`, `KIT_E2E_BROWSER=chromium`, etc. to augment runs.
 - **Other Package Tests**: `pnpm test:others` (5-15 minutes, set 30+ min timeout)
 - **Core Svelte Tests**: `pnpm test`
+- **Svelte 5 Runes Tests**: `pnpm test runtime-runes`
 - **Filter Tests**: `pnpm test <suite-name> -t <test-name>`
 - **Update Snapshots**: `UPDATE_SNAPSHOTS=true pnpm test` or `npx vitest -u`
 
