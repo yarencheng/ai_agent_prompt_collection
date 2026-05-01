@@ -7,6 +7,9 @@ A curated collection of AI Agent configurationsâ€”rules, skills, and workflowsâ€
 Browse the directories to find expert-level prompts and configurations for your specific technology stack:
 *   [**Golang**](./golang/antigravity/) - Idiomatic patterns, observability, and migration workflows.
 *   [**Docker**](./docker/antigravity/) - Security-focused Dockerfiles and Compose best practices.
+*   [**Docsy**](./docsy/antigravity/) - Technical documentation standards and content workflows.
+*   [**Hugo**](./hugo/antigravity/) - Theme development and static site best practices.
+*   [**Svelte**](./svelte/antigravity/) - Modern frontend patterns and component architecture.
 
 Simply copy the relevant `.md` files to your agent's configuration directory (e.g., `.antigravity/` or `.cursor/rules/`).
 
