@@ -1,5 +1,5 @@
 ---
-description: Update the workflow files for a specific tool version
+description: Update the workflow files for a tool
 ---
 
 # Parameters
@@ -11,7 +11,13 @@ description: Update the workflow files for a specific tool version
 * If it does not exist, stop and inform the user that they should run `init-new-tool` first.
 
 # Step 1: Define Update Workflow
-* Set the content of `[NAME]/[VERSION]/antigravity/workflow-update.md` to the following steps:
+* Set the content of `[NAME]/[VERSION]/antigravity/workflow-update.md` to the following (ensure no version numbers or `[VERSION]` placeholders are included):
+  ```markdown
+  ---
+  description: Update the tool components based on the latest documentation
+  ---
+
+  # Update Workflow
   * **Requirement**: Use the `@[/google-antigravity]` skill to manage all agent components.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
   * (B) Scan `../references/**` to find all relevant documentation, including "how to use", "best practices", "user guides", and all versioned release notes.
@@ -21,9 +27,16 @@ description: Update the workflow files for a specific tool version
     * **Priority**: Modern best practices and features MUST take precedence over legacy ones.
   * (E) Merge and refactor all components to remove duplication, improve clarity, and reduce token usage.
   * **Standardization**: Ensure all created/modified components follow the structures (YAML frontmatter, directory layout) defined in `@[/google-antigravity]`.
+  ```
 
 # Step 2: Define Evaluation Workflow
-* Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following steps:
+* Set the content of `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` to the following (ensure no version numbers or `[VERSION]` placeholders are included):
+  ```markdown
+  ---
+  description: Evaluate the tool components against the latest documentation and best practices
+  ---
+
+  # Evaluation Workflow
   * **Requirement**: Use the `@[/google-antigravity]` skill to analyze component effectiveness.
   * (A) Read all existing files in `rules/**`, `skills/**`, and `workflows/**`.
   * (B) Identify all relevant documentation in `../references/**` (e.g., "how to use", "best practices", "user guides", versioned references).
@@ -33,6 +46,7 @@ description: Update the workflow files for a specific tool version
     * List specific missing items or areas for improvement.
     * Provide a coverage estimate (e.g., "90% - missing advanced optimization rules").
   * **Quality Check**: Verify that all components follow the `@[/google-antigravity]` best practices.
+  ```
 
 # Step 3: Execute Evaluation
 * Run the newly updated `[NAME]/[VERSION]/antigravity/workflow-evaluate.md` and report the findings to the user.
