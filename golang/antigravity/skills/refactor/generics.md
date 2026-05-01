@@ -17,20 +17,21 @@ description: Refactor Go code to use Generics where appropriate to reduce duplic
 5. **Verify**: Ensure the refactored code maintains the same behavior and performance.
 
 ## Examples
-### Before
+### Type-Safe Error Extraction (Go 1.26)
 ```go
-func FilterInts(s []int, f func(int) bool) []int {
-    var res []int
-    for _, v := range s {
-        if f(v) {
-            res = append(res, v)
-        }
-    }
-    return res
+// Before: Manual variable declaration and type assertion
+var pathErr *os.PathError
+if errors.As(err, &pathErr) {
+    fmt.Println(pathErr.Path)
+}
+
+// After: Direct extraction with generics
+if pathErr, ok := errors.AsType[*os.PathError](err); ok {
+    fmt.Println(pathErr.Path)
 }
 ```
 
-### After
+### Generic Collection Filter
 ```go
 func Filter[T any](s []T, f func(T) bool) []T {
     var res []T

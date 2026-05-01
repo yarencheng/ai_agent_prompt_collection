@@ -10,7 +10,9 @@ description: Assist in migrating Go applications from standard 'log' or 'logrus'
 3. **Observability Integration**: Connecting logs to tracing via context.
 
 ## Instructions
-1. **Initialize Logger**: Set up a global or local `slog.Logger` (e.g., `slog.New(slog.NewJSONHandler(os.Stdout, nil))`).
+1. **Initialize Logger**: Set up a global or local `slog.Logger`.
+    * For single output: `slog.New(slog.NewJSONHandler(os.Stdout, nil))`.
+    * For multiple outputs (1.26): `slog.New(slog.NewMultiHandler(consoleHandler, fileHandler))`.
 2. **Replace Call Sites**:
     * `log.Print(msg)` -> `slog.Info(msg)`
     * `log.Printf(msg, args...)` -> `slog.Info(fmt.Sprintf(msg, args...))` (or better, use attributes).

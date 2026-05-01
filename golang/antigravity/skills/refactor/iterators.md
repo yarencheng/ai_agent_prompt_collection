@@ -45,3 +45,12 @@ for v := range seq.All() {
     fmt.Println(v)
 }
 ```
+
+### Reflection Iterators (Go 1.26)
+```go
+// Efficiently iterate over struct fields without manual index loops
+val := reflect.ValueOf(myStruct)
+for field, fieldVal := range val.Fields() {
+    fmt.Printf("%s: %v\n", field.Name, fieldVal)
+}
+```
