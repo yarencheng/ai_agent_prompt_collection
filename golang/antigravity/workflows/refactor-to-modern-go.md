@@ -13,7 +13,10 @@ description: Modernize a Go codebase to Go 1.27+ features and best practices.
    * Set `go 1.27` in `go.mod`.
    * Run `go mod tidy`.
 
-2. **Standard Library Migration (1.27)**:
+2. **Automated Modernization (1.26)**:
+   * Run `go fix` with modernizers to automate common idiom updates (e.g., `errors.AsType`, `slog`).
+
+3. **Standard Library Migration (1.27)**:
    * Replace 3-party UUID libraries with the built-in `uuid` package.
    * Simplify string/slice logic using `CutLast`.
 

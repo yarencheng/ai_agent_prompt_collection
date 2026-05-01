@@ -15,6 +15,7 @@ trigger: always_on
 * **Helpers**: Use `t.Helper()` to maintain relevant stack traces.
 
 # Advanced Testing
+* **Benchmarks (1.26)**: Use `B.Loop` (e.g., `for b.Loop() { ... }`) for benchmarks. It prevents inlining issues while keeping variables alive.
 * **Fuzzing**: Use `f.Fuzz` for randomized edge-case detection.
 * **Filesystem**: Use `fstest.MapFS` and `testing/fstest.TestFS` (1.23) for FS-related tests.
 * **Crypto (1.26)**: Use `testing/cryptotest` to verify cryptographic implementations.

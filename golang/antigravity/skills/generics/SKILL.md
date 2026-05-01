@@ -9,10 +9,11 @@ description: Refactor to type-safe, generic Go code to eliminate duplication.
 * **Collection Logic**: Multiple implementations for different slice/map types.
 * **Type Assertions**: Frequent use of `any` with manual assertions.
 * **Reusable Containers**: Implementing stacks, queues, caches.
+* **Recursive Structures (1.26)**: Defining constraints that refer to the type being constrained (e.g., `type Node[N Node[N]] interface`).
 
 ## Instructions
 1. **Identify Redundancy**: Look for functions like `SumInts`, `SumFloats`.
-2. **Define Constraints**: Use `[T constraints.Ordered]` or `[T any]`.
+2. **Define Constraints**: Use `[T constraints.Ordered]`, `[T any]`, or recursive constraints where necessary.
 3. **Consolidate**: Replace type-specific logic with a single generic implementation.
 4. **Leverage Stdlib**: Use `slices` and `maps` packages where possible.
 

@@ -10,12 +10,12 @@ trigger: always_on
 * **Standard Library First**: Prefer the stdlib (especially new additions like `uuid`) over external dependencies.
 
 # Correctness & Safety
-* **Static Analysis**: Treat `go vet` and lint warnings as errors.
+* **Static Analysis**: Treat `go vet` and lint warnings as errors. Use `go fix` modernizers (1.26+) to automate idiom updates.
 * **Version Safety (1.27)**: `go test` now enforces `stdversion`. Ensure `go` directive in `go.mod` matches the symbols used.
 * **Strong Typing**: Minimize `any`. Use generics for type-safe containers and utilities.
 
-# Error Handling
-* **Explicit Handling**: Errors are values; handle them immediately.
+# Ergonomics
+* **Pointer Initialization (1.26)**: Use `new(expression)` (e.g., `new(42)`) to initialize pointers to optional fields or literals in a single step.
 * **Guard Clauses**: Return early to minimize nesting.
 * **Wrapping**: Use `%w` with `fmt.Errorf` for context. Prefer `errors.AsType[T](err)` (1.26+) for extraction.
 
