@@ -1,7 +1,7 @@
-[submodule "golang/1.26/references/github.com/golang/go.git"]
+[submodule "golang/references/github.com/golang/go.git"]
 	path = golang/references/github.com/golang/go.git
 	url = https://github.com/golang/go.git
-[submodule "golang/1.26/references/github.com/golang/website.git"]
+[submodule "golang/references/github.com/golang/website.git"]
 	path = golang/references/github.com/golang/website.git
 	url = https://github.com/golang/website.git
 [submodule "docker/references/github.com/docker/docs.git"]
