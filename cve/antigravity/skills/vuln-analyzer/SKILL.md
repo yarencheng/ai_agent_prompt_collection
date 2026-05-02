@@ -16,10 +16,15 @@ Use this skill to:
 
 ## Instructions
 1. Parse the CVE JSON file.
-2. Check `containers.adp` for provider shortName "CISA".
-3. Look for `x_cisa_kev` field to confirm exploitation status.
-4. Compare `metrics` across all containers to find the highest base score.
-5. Identify `problemTypes` (CWEs) to categorize the vulnerability type.
+2. Check `containers.adp` for provider shortName "CISA" or "CVE".
+3. Compare `metrics` across all containers; prioritize the version with the highest base score unless an ADP provides a more authoritative refinement.
+4. **Version Analysis**:
+   - For each entry in `affected[].versions`:
+     - Identify the `versionType` to apply correct comparison logic.
+     - Process the `changes` list: sort by version (topological sort for `git`) and iterate to determine the status at specific points.
+     - Respect `defaultStatus` if no ranges match.
+5. Identify `problemTypes` (CWEs) and cross-reference with `descriptions` for accuracy.
+6. Verify KEV status via `x_cisa_kev` in the CISA ADP container.
 
 ## Scripts
 - `scripts/check_kev.py`: Checks if a CVE ID is listed in the local KEV snapshot.

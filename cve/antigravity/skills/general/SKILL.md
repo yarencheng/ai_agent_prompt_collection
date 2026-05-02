@@ -15,9 +15,12 @@ Use this skill to:
 
 ## Instructions
 1. To locate a CVE (e.g., CVE-2024-1234):
-   - Path: `cvelistV5/2024/1xxx/CVE-2024-1234.json`.
-2. Use `grep` or `find` to search for specific product names in the `affected` fields.
-3. Use the `deltaLog.json` in `cvelistV5` to identify recent updates.
+   - Path: `cvelistV5/cves/2024/1xxx/CVE-2024-1234.json`.
+2. Use `grep` or `find` to search for specific product names or PURLs in the `affected` fields across the repository.
+3. Use the `deltaLog.json` in the root of `cvelistV5` to identify and process recent updates.
+4. When validating:
+   - Use the schema files found in the `cve-schema` reference directory.
+   - Prefer the production schema for final validation.
 
 ## Scripts
 - `scripts/find_cve.sh`: Locates the JSON file for a given CVE ID.

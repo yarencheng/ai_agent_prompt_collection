@@ -18,5 +18,6 @@ Support for multiple data providers (ADPs) is essential for comprehensive CVE an
 
 ## Implementation Rules
 * Always check all `containers.adp` entries for additional context.
-* If a field exists in both CNA and ADP containers (e.g., CVSS), the ADP version may provide a more recent or independent assessment.
-* References with the `x_transferred` tag in the CVE Program container are historical snapshots from the CNA container.
+* **Provider Priority**: Treat CNA data as the source of truth for product names, but ADP data (especially CISA) as the source of truth for exploitation status and scoring refinements.
+* **Transferred Data**: References with the `x_transferred` tag in the CVE Program ADP container indicate they were originally part of the CNA container in an older schema version (V4) and have been moved to preserve history.
+* **SSVC**: Use Stakeholder-Specific Vulnerability Categorization (if present) to recommend prioritization (e.g., "Track", "Attend", "Act").
