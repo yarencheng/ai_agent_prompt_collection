@@ -28,8 +28,9 @@ Use this skill to:
    - Deduplicate by `url`, preferring the most detailed metadata (name, tags).
 6. **Integrity Check**:
    - Identify `problemTypes` (CWEs) and cross-reference with `descriptions` for accuracy.
-   - Verify KEV status via `x_cisa_kev` in the CISA ADP container.
+   - Verify KEV status via `x_cisa_kev` in the CISA ADP container, or use `scripts/check_kev.py`.
 
 ## Scripts
 - `scripts/check_kev.py`: Checks if a CVE ID is listed in the local KEV snapshot.
 - `scripts/summarize_impact.py`: Generates a high-level summary of the vulnerability impact.
+- `scripts/validate_env.sh`: Checks for required data and tools.
