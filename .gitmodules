@@ -25,3 +25,9 @@
 [submodule "docsy/references/github.com/google/docsy.git"]
 	path = docsy/references/github.com/google/docsy.git
 	url = https://github.com/google/docsy.git
+[submodule "cve/references/github.com/CVEProject/cvelistV5"]
+	path = cve/references/github.com/CVEProject/cvelistV5
+	url = https://github.com/CVEProject/cvelistV5
+[submodule "cve/references/github.com/CVEProject/cve-schema.git"]
+	path = cve/references/github.com/CVEProject/cve-schema.git
+	url = https://github.com/CVEProject/cve-schema.git
