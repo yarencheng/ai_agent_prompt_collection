@@ -16,8 +16,12 @@ Support for multiple data providers (ADPs) is essential for comprehensive CVE an
 * **SSVC**: Stakeholder-Specific Vulnerability Categorization.
 * **Vulnrichment**: Missing CVSS, CWE, or CPE data provided by CISA.
 
-## Implementation Rules
-* Always check all `containers.adp` entries for additional context.
-* **Provider Priority**: Treat CNA data as the source of truth for product names, but ADP data (especially CISA) as the source of truth for exploitation status and scoring refinements.
+## Reference Normalization
+* **Deduplication**: When merging references from CNA and ADP containers, identify duplicates by `url`.
+* **Merging**: If a reference exists in both, prefer the version with more descriptive `name` or `tags`.
 * **Transferred Data**: References with the `x_transferred` tag in the CVE Program ADP container indicate they were originally part of the CNA container in an older schema version (V4) and have been moved to preserve history.
+
+## Conflict Resolution
+* **Scoring Conflicts**: If CVSS scores differ between CNA and ADP (e.g., CISA), prioritize the ADP score if it provides a more recent refinement or specific threat context (e.g., KEV).
+* **Exploitation Status**: The CISA ADP's KEV status is the definitive source for "Known Exploited" status, regardless of CNA descriptions.
 * **SSVC**: Use Stakeholder-Specific Vulnerability Categorization (if present) to recommend prioritization (e.g., "Track", "Attend", "Act").

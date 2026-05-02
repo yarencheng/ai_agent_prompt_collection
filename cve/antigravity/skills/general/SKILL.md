@@ -11,16 +11,20 @@ Core utilities for navigating the CVE List repository and managing local CVE dat
 Use this skill to:
 - Navigate the `cvelistV5` directory structure (Year/Month/CVE-ID.json).
 - Search for CVE records by ID or keyword.
-- Validate local JSON files against the CVE V5 schema.
+- Validate local JSON files against the CVE V5 schema (5.0, 5.1, 5.2).
+- Sync and maintain the local CVE list using `deltaLog.json`.
 
 ## Instructions
 1. To locate a CVE (e.g., CVE-2024-1234):
    - Path: `cvelistV5/cves/2024/1xxx/CVE-2024-1234.json`.
 2. Use `grep` or `find` to search for specific product names or PURLs in the `affected` fields across the repository.
-3. Use the `deltaLog.json` in the root of `cvelistV5` to identify and process recent updates.
-4. When validating:
-   - Use the schema files found in the `cve-schema` reference directory.
-   - Prefer the production schema for final validation.
+3. **Delta Maintenance**:
+   - Use `deltaLog.json` in the root of `cvelistV5` to identify and process recent updates.
+   - Note: `deltaLog.json` typically retains 30 days of history (reduced to 15 days during normalization events).
+4. **Validation**:
+   - Before processing or after any manual edits, validate the record.
+   - Determine schema version from `dataVersion` in the JSON file.
+   - Use the appropriate schema file from the `cve-schema` reference directory.
 
 ## Scripts
 - `scripts/find_cve.sh`: Locates the JSON file for a given CVE ID.

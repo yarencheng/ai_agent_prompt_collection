@@ -23,8 +23,12 @@ Use this skill to:
      - Identify the `versionType` to apply correct comparison logic.
      - Process the `changes` list: sort by version (topological sort for `git`) and iterate to determine the status at specific points.
      - Respect `defaultStatus` if no ranges match.
-5. Identify `problemTypes` (CWEs) and cross-reference with `descriptions` for accuracy.
-6. Verify KEV status via `x_cisa_kev` in the CISA ADP container.
+5. **Reference Normalization**:
+   - Merge `references` from all containers.
+   - Deduplicate by `url`, preferring the most detailed metadata (name, tags).
+6. **Integrity Check**:
+   - Identify `problemTypes` (CWEs) and cross-reference with `descriptions` for accuracy.
+   - Verify KEV status via `x_cisa_kev` in the CISA ADP container.
 
 ## Scripts
 - `scripts/check_kev.py`: Checks if a CVE ID is listed in the local KEV snapshot.
